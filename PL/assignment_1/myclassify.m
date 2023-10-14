@@ -25,11 +25,18 @@ function res = myclassify(P)
     f=readmatrix("printTest.txt");
     
     
+    %With filters   Perceptron or Associative Memory
     
     
     
     
     resultado = sim(net,P);
+
+    
+
+
+
+
     [~,ii] = max(resultado);
     res = ii;
     res = reshape(res, [10, 5])';

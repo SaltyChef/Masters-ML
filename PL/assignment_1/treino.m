@@ -23,10 +23,9 @@ function resultado=treino(P,True)
     net.trainParam.epochs = 10000;
     net.trainParam.goal = 1e-8;
     % net.trainParam.max_fail=100;      %validation 
-    
    
     net = train(net,P,T);
     
     resultado = sim(net,P);
-    save("models/netLinear_traingd2.mat","net");
+    save("models/TESTE.mat","net");
 end
