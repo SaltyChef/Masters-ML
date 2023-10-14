@@ -1,6 +1,8 @@
 function res = myclassify(P) 
     %load net.mat;
-
+    
+    %load netBinary.mat;
+    %load netSigmoidal.mat;
     % --------- -----------                    %       epochs
     %load netLinear.mat;                     %66      10000 
     %load netLinear_trainscg.mat             %62      10000
@@ -16,11 +18,11 @@ function res = myclassify(P)
     %load netBinary_traingdm.mat             %8       10000
     %load netBinary_trainlm.mat              %10      10000
     %-------------------------
-    %load netSigmoidal_traingd.mat           %36      10000
-    %load netSigmoidal_traingda.mat          %42      10000
-    %load netSigmoidal_trainscg.mat          %70      10000
-    %load netSigmoidal_traingdm.mat          %36      10000
-    load netSigmoidal_trainlm.mat           %56      10000
+    %load netSigmoidal_traingd.mat           36       10000
+    %load netSigmoidal_traingda.mat          42       10000
+    load
+
+
 
     view(net); %View net
     f=readmatrix("printTest.txt");
