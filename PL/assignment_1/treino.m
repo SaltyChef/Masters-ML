@@ -9,15 +9,15 @@ function resultado=treino(P,True)
 
     %train
     %net.layers{1}.transferFcn = 'hardlim'; %binary
-    net.layers{1}.transferFcn = 'logsig'; %sigmoidal
-    %net.layers{1}.transferFcn = 'purelin'; %linear
+    %net.layers{1}.transferFcn = 'logsig'; %sigmoidal
+    net.layers{1}.transferFcn = 'purelin'; %linear
     
     
-    %net.trainFcn='traingd';
+    net.trainFcn='traingd';
     %net.trainFcn='traingda';
     %net.trainFcn='trainscg';
     %net.trainFcn='traingdm';
-    net.trainFcn='trainlm';
+    %net.trainFcn='trainlm';
     
     %Train parameters
     net.trainParam.epochs = 10000;
@@ -28,5 +28,5 @@ function resultado=treino(P,True)
     net = train(net,P,T);
     
     resultado = sim(net,P);
-    save("netSigmoidal_trainlm.mat","net");
+    save("models/netLinear_traingd2.mat","net");
 end

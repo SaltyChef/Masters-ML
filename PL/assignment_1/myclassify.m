@@ -2,13 +2,12 @@ function res = myclassify(P)
     %load net.mat;
 
     % --------- -----------                         %       epochs
-    %load models/netLinear.mat;                     %66      10000 
+    %load models/netLinear_traingd.mat              %66      50000 
+    %load models/netLinear_traingd_2L.mat           %50      10000
     %load models/netLinear_trainscg.mat             %62      10000
     %load models/netLinear_traingdm.mat             %14      10000
     %load models/netLinear_trainlm.mat              %58      10000
     %load models/netLinear_traingda.mat             %28      10000
-    %load models/netLinear_traingd.mat              %66      50000 
-    %load models/netLinear_traingd_2L.mat           %50      10000
     % ------------------------
     %load models/netBinary_traingd.mat              %18      10000
     %load models/netBinary_traingda.mat             %22      10000
@@ -24,6 +23,12 @@ function res = myclassify(P)
 
     view(net); %View net
     f=readmatrix("printTest.txt");
+    
+    
+    
+    
+    
+    
     resultado = sim(net,P);
     [~,ii] = max(resultado);
     res = ii;
