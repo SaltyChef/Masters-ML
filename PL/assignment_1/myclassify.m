@@ -20,23 +20,22 @@ function res = myclassify(P)
     %load models/netSigmoidal_trainscg.mat          %70      10000
     %load models/netSigmoidal_traingdm.mat          %36      10000
     load models/netSigmoidal_trainlm.mat           %56      10000
+    %----------- Filters ----------
+    load models/PerceptronFilter.mat                
+    %load models/TESTE.mat                          %22      10000
+    
 
     view(net); %View net
     f=readmatrix("printTest.txt");
     
     
     %With filters   Perceptron or Associative Memory
+    resultado = sim(netFilter, P);
+    %resultado = sim(net, P2);  
     
     
     
-    
-    resultado = sim(net,P);
-
-    
-
-
-
-
+    %resultado = sim(net,P);
     [~,ii] = max(resultado);
     res = ii;
     res = reshape(res, [10, 5])';
