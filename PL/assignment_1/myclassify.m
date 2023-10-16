@@ -6,7 +6,7 @@ function res = myclassify(P, modelName, hasFilter, filterName)
     %load models/netLinear_traingdm.mat             %14      10000
     %load models/netLinear_trainlm.mat              %58      10000
     %load models/netLinear_traingda.mat             %28      10000
-    --%load models/netLinear_traingd_2L.mat           %50      10000
+    %--load models/netLinear_traingd_2L.mat           %50      10000
     % ------------------------
     %load models/netBinary_traingd.mat              %18      10000
     %load models/netBinary_traingda.mat             %22      10000
@@ -34,19 +34,20 @@ function res = myclassify(P, modelName, hasFilter, filterName)
         filterFile = "models/" + filterName + ".mat";
         file = load(filterFile, "netFilter" );
         netFilter = file.netFilter;
+        netFilter.inputs{1}.size
+        
         P2 = sim(netFilter, P);
         resultado = sim(net, P2);
     else
+        view(net);
         resultado = sim(net,P);
     end
     
-
-
-    %f=readmatrix("printTest.txt");
+    f=readmatrix("printTest.txt");
 
     [~,ii] = max(resultado);
     res = ii;
     res = reshape(res, [10, 5])';
   
-    %res=taxaAcerto(res,f);
+    res=taxaAcerto(res,f);
 end
