@@ -1,4 +1,4 @@
-function resultado=treino(P,True)     
+function resultado=treino(P)     
     %Create target
     f=size(P);
     T = createTarget(f(1,2));

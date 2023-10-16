@@ -1,4 +1,4 @@
-function res = myclassify(P, modelName, hasFilter, filterName) 
+function res = myclassify(P, hasFilter, filterName) 
     
     % --------- -----------                         %       epochs
     %load models/netLinear_traingd.mat              %66     500000
@@ -6,7 +6,7 @@ function res = myclassify(P, modelName, hasFilter, filterName)
     %load models/netLinear_traingdm.mat             %14      10000
     %load models/netLinear_trainlm.mat              %58      10000
     %load models/netLinear_traingda.mat             %28      10000
-    --%load models/netLinear_traingd_2L.mat           %50      10000
+    %load models/netLinear_traingd_2L.mat           %50      10000
     % ------------------------
     %load models/netBinary_traingd.mat              %18      10000
     %load models/netBinary_traingda.mat             %22      10000
@@ -24,8 +24,7 @@ function res = myclassify(P, modelName, hasFilter, filterName)
     %load models/TESTE.mat                          %22      10000
     
     %load model
-    filename = "models/"+ modelName + ".mat";
-    file = load(filename, "net");
+    file = load("models/TESTE.mat", "net");
     net = file.net;
 
 
