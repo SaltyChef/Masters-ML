@@ -1,4 +1,4 @@
-function res = myclassify(P, modelName, hasFilter, filterName) 
+function res = myclassify(P) 
     %                                               %       ephocs
     %models/netLinear_1L.mat                        10%     10000
     %models/netLinear_2L.mat                        72%     10000
@@ -10,14 +10,22 @@ function res = myclassify(P, modelName, hasFilter, filterName)
     %load models/PerceptronFilter.mat                
     %load models/AssociativeMemoryFilter.mat              
     
-    filename = "models/"+ modelName + ".mat";
-    file = load(filename, "net");
+    % filename = "models/"+ modelName + ".mat";
+    file = load("models/TESTE.mat", "net");
     net = file.net;
-
-
-    if hasFilter     
+    noFilter=load("noFilter.mat","noFilter");
+    noFilter=noFilter.noFilter;
+    % perceptron=load("perceptron.mat","perceptron");
+    % perceptron=perceptron.perceptron;
+    associativeMemory=load("associativeMemory.mat","associativeMemory");
+    associativeMemory=associativeMemory.associativeMemory;
+    if (strcmp(noFilter,'Off'))     
         %load filter
-        filterFile = "models/" + filterName + ".mat";
+        if(strcmp(associativeMemory,'Off'))
+            filterFile="models/PerceptronFilter.mat";
+        else
+            filterFile = "models/AssociativeMemoryFilter.mat";
+        end
         file = load(filterFile, "netFilter" );
         netFilter = file.netFilter;
         netFilter.inputs{1}.size
@@ -28,7 +36,6 @@ function res = myclassify(P, modelName, hasFilter, filterName)
         view(net);
         resultado = sim(net,P);
     end
-    
     f=readmatrix("printTest.txt");
 
     [~,ii] = max(resultado);

@@ -1,5 +1,5 @@
 function resultado=taxaAcerto(res, f)
-a=size(res)
+a=size(res);
 acertos=0;
 total=a(1,1)*a(1,2);
 for i=1:a(1,1)
