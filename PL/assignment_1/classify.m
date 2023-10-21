@@ -18,6 +18,12 @@ function res = classify()
     %  TESTE C 88%      "               "
     %  TREINO 
     %--------------------
+    %load models/classifiers/net_purelin_softmax_2L.mat 
+    %  TESTE A 90%    10000 ephocs   138 hidden     1e-8 perfor  1e-6 grad
+    %  TESTE B 90%      "               "
+    %  TESTE C 88%      "               "
+    %  TREINO 
+    %--------------------
     
 
 
