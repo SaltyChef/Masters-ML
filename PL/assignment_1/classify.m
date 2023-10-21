@@ -1,31 +1,16 @@
 function res = classify() 
     
-    %load models/classifiers/net_purelin_1L.mat 
-    %  TESTE A  80%    1000 ephocs   10 hidden    1e-8 perfor  1e-6 grad
-    %  TESTE B  88%     "               " 
-    %  TESTE C  92%     "               "
-    %  TREINO 
+    %load models/classifiers/net_purelin_1L.mat
+    %load models/classifiers/net_purelin_softmax_2L.mat
+    %load models/classifiers/net_purelin_purelin_2L.mat
+    %load models/classifiers/net_purelin_logsig_2L.mat
     %--------------------
-    load models/classifiers/net_purelin_logsig_2L.mat
-    %  TESTE A 80%    1000 ephocs   10 hidden     1e-8 perfor  1e-6 grad
-    %  TESTE B 84%    "                 "
-    %  TESTE C 88%
-    %  TREINO 
+    %load models/classifiers/net_logsig_1L.mat 
+    %load models/classifiers/net_logsig_softmax_2L.mat 
+    %load models/classifiers/net_logsig_purelin_2L.mat 
+    %load models/classifiers/net_logsig_logsig_2L.mat 
     %--------------------
-    %load models/classifiers/net_purelin_softmax_2L.mat 
-    %  TESTE A 90%    10000 ephocs   138 hidden     1e-8 perfor  1e-6 grad
-    %  TESTE B 90%      "               "
-    %  TESTE C 88%      "               "
-    %  TREINO 
-    %--------------------
-    %load models/classifiers/net_purelin_softmax_2L.mat 
-    %  TESTE A 90%    10000 ephocs   138 hidden     1e-8 perfor  1e-6 grad
-    %  TESTE B 90%      "               "
-    %  TESTE C 88%      "               "
-    %  TREINO 
-    %--------------------
-    
-
+    load models/classifiers/net_hardlim_1L.mat
 
    
     %----------- Filters ----------
@@ -43,15 +28,22 @@ function res = classify()
     %--------TESTE C -------------
     load data/testes/PTesteC.mat
     P=PTesteC
-    f=readmatrix("data/testes/PTesteC.txt");
-
+    f=readmatrix("data/testes/PTesteC.txt");    
+    %--------TREINO --------------
+    % load data/treino/gigante.mat
+    % P=gigante
+    % f=readmatrix("data/treino/gigante.txt");
    
+
     view(net);
     resultado = sim(net,P);
-   
+
+    a = size(resultado);
     [~,ii] = max(resultado);
     res = ii;
-    res = reshape(res, [10, 5])';
-  
+    res = reshape(res, [10, a(1,2)/10])';
+
+
     res=taxaAcerto(res,f);
+    
 end

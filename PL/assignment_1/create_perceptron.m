@@ -18,4 +18,4 @@ function netFilter = create_perceptron(P)
     netFilter.trainFcn = 'trainc'   
     netFilter.adaptFcn = 'learnp';
     netFilter = train(netFilter,P,Target);
-    save("models/PerceptronFilter.mat", 'netFilter');
+    save("models/filters/PerceptronFilter.mat", 'netFilter');

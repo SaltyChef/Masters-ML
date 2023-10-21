@@ -1,4 +1,4 @@
-function resultado = treinoClassifierHardlim(P, num_layers)
+function resultado = treinoClassifierHardlim(P)
     %create target
     f=size(P);
     T = createTarget(f(1,2));
@@ -15,10 +15,7 @@ function resultado = treinoClassifierHardlim(P, num_layers)
 
     view(net);
     resultado = net;
-    if(num_layers == 1)
-        save("models/netHardlim_1L.mat","net");
-    else 
-        save("models/netLinear_2L.mat","net");  
-    end
-
+   
+    save("models/classifiers/net_hardlim_1L.mat","net");
+    
 end
