@@ -3,7 +3,6 @@ function res = myclassify(P)
     %models/netLinear_1L.mat                        10%     10000
     %models/netLinear_2L.mat                        72%     10000
     %models/netHardlim_1L.mat                       60%     10000
-    %models/nethardlim_2L.mat ???????????????????????????????????
     %models/netSigmoid_1L.mat                       12%     10000
     %models/netSigmoid_2L.mat                       58%     10000
     %----------- Filters ----------
@@ -19,7 +18,7 @@ function res = myclassify(P)
     % perceptron=perceptron.perceptron;
     associativeMemory=load("associativeMemory.mat","associativeMemory");
     associativeMemory=associativeMemory.associativeMemory;
-    if (strcmp(noFilter,'Off'))     
+    if (strcmp(noFilter,'Off'))    
         %load filter
         if(strcmp(associativeMemory,'Off'))
             filterFile="models/PerceptronFilter.mat";

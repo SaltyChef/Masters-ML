@@ -9,7 +9,7 @@ function resultado = treinoClassifierSigmoid(P, num_layers)
     else 
         net = patternnet(10);    
     end
-    net.layers{1}.size = 151;
+    %net.layers{1}.size = 151;
     net = configure(net,P,T);
   
     %Train parameters
