@@ -1,6 +1,6 @@
-function res = classify() 
+function res = classify(filterType) 
     
-    %load models/classifiers/net_purelin_1L.mat
+    load models/classifiers/net_purelin_1L.mat
     %load models/classifiers/net_purelin_softmax_2L.mat
     %load models/classifiers/net_purelin_purelin_2L.mat
     %load models/classifiers/net_purelin_logsig_2L.mat
@@ -10,7 +10,7 @@ function res = classify()
     %load models/classifiers/net_logsig_purelin_2L.mat 
     %load models/classifiers/net_logsig_logsig_2L.mat 
     %--------------------
-    load models/classifiers/net_hardlim_1L.mat
+    %load models/classifiers/net_hardlim_1L.mat
 
    
     %----------- Filters ----------
@@ -35,15 +35,23 @@ function res = classify()
     % f=readmatrix("data/treino/gigante.txt");
    
 
-    view(net);
-    resultado = sim(net,P);
 
+    if(filterType == 1)
+        load models/filters/PerceptronFilter.mat
+        P2 = sim(netFilter, P);
+        resultado = sim(net, P2);
+    else
+         resultado = sim(net,P);
+    end
+
+    view(net);
+  
     a = size(resultado);
     [~,ii] = max(resultado);
     res = ii;
     res = reshape(res, [10, a(1,2)/10])';
 
-
+    res
     res=taxaAcerto(res,f);
     
 end
