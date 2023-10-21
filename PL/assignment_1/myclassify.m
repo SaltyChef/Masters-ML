@@ -12,11 +12,11 @@ function res = myclassify(P)
     % filename = "models/"+ modelName + ".mat";
     file = load("models/TESTE.mat", "net");
     net = file.net;
-    noFilter=load("noFilter.mat","noFilter");
+    noFilter=load("myClassifyArguments/noFilter.mat","noFilter");
     noFilter=noFilter.noFilter;
     % perceptron=load("perceptron.mat","perceptron");
     % perceptron=perceptron.perceptron;
-    associativeMemory=load("associativeMemory.mat","associativeMemory");
+    associativeMemory=load("myClassifyArguments/associativeMemory.mat","associativeMemory");
     associativeMemory=associativeMemory.associativeMemory;
     if (strcmp(noFilter,'Off'))    
         %load filter

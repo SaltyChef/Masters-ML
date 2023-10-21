@@ -196,7 +196,7 @@ function Dn(varargin)
              ind=find( sum(data.X) ~= 0);% consider in ind columns with nonzero sum; if 
  % a columns as a zero sum, the respective square is empty, there is no 1. 
             
-             save PTesteC
+             %save PTesteC
  
  %Save workspace variables to file. (from help save).
  %save(FILENAME), or save FILENAME,  stores all variables from the current workspace in a
@@ -204,7 +204,7 @@ function Dn(varargin)
  % We want to save only P, and for that we must specify that we only want
  % to save P; for that we must write
  
-             save data/testes/PTesteC.mat PTesteC
+             %save data/testes/PTesteC.mat PTesteC
            
  % and a mat file called P is created having inside the matrix P.Then we can
  % load P, and rename the matrix P, by clicking on P with the right mouse
@@ -227,7 +227,7 @@ function Dn(varargin)
  % If you are not using use this file for classification, comment the following
  % line feval:
  %
-             %feval(options.fun,data);
+             feval(options.fun,data);
              
  % feval calculates the function options.fun, that by default is ocr_fun that 
  %calls the function myclassify that must be written by the user.
