@@ -15,6 +15,9 @@ function res = myclassify(P, filled_inx)
     associativeMemory=load("myClassifyArguments/associativeMemory.mat","associativeMemory");
     associativeMemory=associativeMemory.associativeMemory;
 
+    a = size(filled_inx);
+    net.inputs{1}.size = 256;
+
     if (strcmp(noFilter,'Off'))    
         %load filter
         if(strcmp(associativeMemory,'Off'))
@@ -36,7 +39,7 @@ function res = myclassify(P, filled_inx)
     
     [~,ii] = max(resultado);
     res = ii;
-    a = size(ii);
+    a = size(ii)
    
     %res=taxaAcerto(res,f);
 end

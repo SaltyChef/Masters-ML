@@ -38,7 +38,7 @@ y = -ones(1,length(data.X)); % non-filled subwindows are labeled by -1
 datainp=data.X;
 save P.dat datainp %/ascii
 save index.dat filled_inx %/ascii
-%Y= myclassify(data.X,filled_inx);
+%Y= classify(data.X, 0);
 Y= myclassify(data.X, filled_inx);
 y(filled_inx)=Y;
 %======================================================================== JH
