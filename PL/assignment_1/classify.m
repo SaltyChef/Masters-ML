@@ -38,7 +38,6 @@ function res = classify(filterType)
             load models/filters/PerceptronFilter.mat
             
         else(filterType == 2)
-            cona = 2
             load models/filters/AssociativeMemoryFilter.mat
         end
         P2 = sim(netFilter, P);

@@ -39,7 +39,7 @@ datainp=data.X;
 save P.dat datainp %/ascii
 save index.dat filled_inx %/ascii
 %Y= myclassify(data.X,filled_inx);
-Y= myclassify(data.X);
+Y= myclassify(data.X, filled_inx);
 y(filled_inx)=Y;
 %======================================================================== JH
 
