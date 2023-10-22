@@ -1,8 +1,8 @@
-function netFilter = create_associativeMemory(P)
+function new_P = create_associativeMemory(P)
     %create target
     load PerfectArial.mat
     f = size(P);
-    T = zeros(256, f(1,2))
+    T = zeros(256, f(1,2));
     
     for i = 1:f(1,2)
         if(mod(i, 10)) == 0 
@@ -25,5 +25,7 @@ function netFilter = create_associativeMemory(P)
         netFilter = adapt(netFilter, p, t);
     end
     view(netFilter);
-    save("models/AssociativeMemoryFilter.mat", 'netFilter')
+    save("models/filters/AssociativeMemoryFilter.mat", 'netFilter')
+end
+
 

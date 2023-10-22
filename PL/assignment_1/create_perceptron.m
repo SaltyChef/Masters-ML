@@ -1,5 +1,5 @@
 %For training use the function net.trainFcn='trainc' and net.adapFcn=’learnp’.
-%P -> dataset and T -> Perfect target matrix
+%P -> dataset(256x1700) and T -> Perfect target matrix(256x1700)
 function netFilter = create_perceptron(P)
     load PerfectArial.mat
     f = size(P);
@@ -13,15 +13,14 @@ function netFilter = create_perceptron(P)
 
         end
     end
-
-    netFilter = perceptron;                     %cria uma net = perceptron
+    
+    %cria uma net = perceptron
+    netFilter = perceptron;                     
     net.numInputs=1;
     net.inputs{1}.size=256;
     
     net.numLayers=1;
-    net.layers{1}.size=256;
-    net.layers{1}.transferFcn='hardlim';
-    
+    net.layers{1}.size=256;  
     net.trainFcn='trainc';
     net.adaptFcn='learnp';
     netFilter = train(netFilter,P,Target);
