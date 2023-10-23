@@ -16,6 +16,7 @@ function resultado = treinoClassifierHardlim(P)
     view(net);
     resultado = net;
    
-    save("models/classifiers/net_hardlim_1L.mat","net");
+    %save("models/classifiers/net_hardlim_1L.mat","net");
+     save("models/classifiers/net_hardlim_TESTE.mat","net");
     
 end
