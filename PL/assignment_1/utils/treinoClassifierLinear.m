@@ -26,7 +26,7 @@ function resultado=treinoClassifierLinear(P, num_layers, fun2)
         
     end
     %net.trainFcn='traingdx';
-    net.trainFcn='trainlm'
+    net.trainFcn='trainlm';
     net.trainParam.epochs = 1000;
     net.trainParam.goal = 1e-8;
     net.trainParam.min_grad = 1e-6;
