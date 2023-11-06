@@ -12,9 +12,10 @@ for i=1:length(T)
     end
     end
 end
+
 for i = 1:2:length(controle)
     result(controle(i)-300:controle(i)-1,3) = 1;
-    result(controle(i) : controle(i+1),2) = 1;
+    result(controle(i) : controle(i+1)+60,2) = 1;
     result(controle(i)-300 : controle(i+1),1) = 0;
 end
 resultado=result;
