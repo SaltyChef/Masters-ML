@@ -1,6 +1,3 @@
-% PATIENT : 
-%   1 -> 44202.mat
-%   2 -> 63502.mat
 % ARCHITETURES :
 %   1 -> shallow    -> feedfowardnet
 %   2 -> shallow    -> layrecnet (layer Recurrent Network) with delays
@@ -10,18 +7,19 @@
 %   1 -> incremental learning
 %   2 -> batch learning
 
-function result = classify(patient, architeture, trainingStyle, numLayers, numHiddenNeurons)
-    % Choosing patient A or B
-    
+function result = classify(P, T, architeture, trainingStyle, numLayers, numHiddenNeurons)
+    %Choosing patient A or B
     if(patient == 1)
-        load '../dataset/44202.mat' FeatVectSel Trg
+        P = load 
     elseif(patient == 2)
-        load '../dataset/63502.mat' FeatVectSel Trg
     end
-    P = FeatVectSel;
-    T = correctTarget(Trg);
-    
-    % Divinding the dataset and target into treino + test
+
+
+    %% TARGET
+    T = correctTarget(T);
+
+
+    %% DIVIDING THE DATASET AND TARGET
     percentage = 0.85;
     
     breakingIndex = round(length(P) * percentage);
@@ -31,7 +29,7 @@ function result = classify(patient, architeture, trainingStyle, numLayers, numHi
     target_treino = T(1:breakingIndex, :);
     target_test = T(breakingIndex+1:end , :);
     
-    % INVERTING P AND T
+    %% INVERTING P AND T
     data_treino = data_treino';
     target_treino = target_treino';
 
