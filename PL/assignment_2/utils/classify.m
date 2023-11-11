@@ -26,8 +26,8 @@
 %           trainlm
 %
 
-function result = classify(patient, architeture, trainingStyle, trainFun, learnFun, numLayers, actFun1, actFun2, actFun3, numHiddenNeurons)
-    file_name = "";
+function result = classify(patient, architeture, trainingStyle, trainFun, learnFun, numLayers, numHiddenNeurons, actFun1, actFun2, actFun3)
+    file_name = "../models/classifiers/";
 
     % Choosing patient A or B
     if(patient == 1)
@@ -50,13 +50,12 @@ function result = classify(patient, architeture, trainingStyle, trainFun, learnF
     target_treino = T(1:breakingIndex, :);
     target_test = T(breakingIndex+1:end , :);
     
+    %balacing train
+    % [data_treino, target_treino] = balanceTrainSet(data_treino, target_treino);  
+
     % INVERTING P AND T
     data_treino = data_treino';
     target_treino = target_treino';
-
-    %balacing train
-
-
 
     %-------------------- SHALLOW NETS -------------------- 
     if(architeture == 1 || architeture == 2)
@@ -91,10 +90,29 @@ function result = classify(patient, architeture, trainingStyle, trainFun, learnF
             file_name = file_name + actFun1 + "_" + actFun2 + "_" + actFun3;
         end
         
-        file_name = file_name + ".mat"
+        file_name = file_name + ".mat";
+
+       
+        %Get dimension of each class
+        dimInter = nnz(find(all(target_treino==[1 0 0]')));     %vai buscar o numero de 1s posicionados mais a esquerda + os no centro + os da direita
+        dimPreictal = nnz(find(all(target_treino==[0 1 0]')));
+        dimIctal = nnz(find(all(target_treino==[0 0 1]')));
+        dimTotal = dimInter + dimPreictal + dimIctal;
+       
         
-        net = train(net, data_treino, target_treino);
-        result = net(data_test);
+        %Define weight vector based on dimension of each class, smallest class gets the highest weight  
+        pInter = dimTotal/dimInter;
+        pPre = dimTotal/dimPreictal;
+        pIctal = dimTotal/dimIctal;
+        pInter
+        pPre
+        pIctal
+        EW = all(target_treino==[1 0 0]')*pInter + all(target_treino==[0 1 0]')*pPre + all(target_treino==[0 0 1]')*pIctal;
+        
+        net = train(net, data_treino,target_treino,[],[],EW);
+        save(file_name,"net");
+        result = net(data_test');
+        view(net);
         perf = perform(net,data_test,target_test)
 
     %-------------------- DEEP NETS --------------------
