@@ -1,5 +1,0 @@
-function result = sensitivity()
-
-
-
-end

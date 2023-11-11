@@ -56,9 +56,6 @@ function result = classify(patient, architeture, trainingStyle, trainFun, learnF
     % INVERTING P AND T
     data_treino = data_treino';
     target_treino = target_treino';
-    data_test = data_test';
-    target_test = target_test';
-
 
     %-------------------- SHALLOW NETS -------------------- 
     if(architeture == 1 || architeture == 2)
@@ -114,12 +111,11 @@ function result = classify(patient, architeture, trainingStyle, trainFun, learnF
         
         net = train(net, data_treino,target_treino,[],[],EW);
         save(file_name,"net");
-        result = net(data_test);
+        result = net(data_test');
         view(net);
         
-        [sensitivity_dec, specifit_dec] = detection(result, target_test);
-        [sensitivity_pred, specifit_pred] = prediction(result, target_test);
-        sensitivity_dec
+        Sensi
+
 
     %-------------------- DEEP NETS --------------------
     elseif(architeture == 3)

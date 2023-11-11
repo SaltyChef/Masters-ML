@@ -1,12 +1,13 @@
 function [Sensitivity,Specifit] = detection(result, target)
     
-    index_pre = find(target(:,3));
-    index = [find(target(:,1)) find(target(:,2))];
+    index_pre = find(target(:,2));
+    index_ictal = find(target(:,3));
+    
+    logical_positives = result(index_ictal,2)==target(index_ictal,2);
+    logical_negatives = result(index_pre,3)==target(index_pre,3);
+    
 
-    logical_positives = result(index_pre,:)==target(index_pre,:); 
-    logical_negatives = result(index,:)==target(index,:);
-
-    TP=sum(logical_positives);
+    TP=sum(logical_positives)
     TN=sum(logical_negatives);
     
     FP=length(logical_negatives)-TN;
