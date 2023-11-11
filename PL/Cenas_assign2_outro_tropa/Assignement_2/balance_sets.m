@@ -10,5 +10,6 @@ function [new_p, new_t] = balance_sets(p, t)
     new_index_t_interictal = new_index_t_interictal(:, 1:size_without_interictal);
     
     new_order = sort([new_index_t_interictal index_of_t_preictal index_of_t_ictal]);
-    new_p = p(:, new_order); new_t = t(:, new_order);
+    new_p = p(:, new_order); 
+    new_t = t(:, new_order);
 end

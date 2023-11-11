@@ -2,7 +2,7 @@
 %   1 -> 44202.mat
 %   2 -> 63502.mat
 % ARCHITETURES :
-%   shallow -> tansig, purelin, sigmoidal ... softmax
+%   shallow -> tansig, purelin, sigmoidal ...
 %   1 -> shallow    -> feedfowardnet 
 %   2 -> shallow    -> layrecnet (layer Recurrent Network) with delays
 %   3 -> deep       -> CNN
@@ -56,8 +56,8 @@ function result = classify(patient, architeture, trainingStyle, numLayers, numHi
         perf = perform(net,data_test,target_test)
 
     elseif(architeture == 2)
-            
     
+
 
 
     %% DEEP NETS
