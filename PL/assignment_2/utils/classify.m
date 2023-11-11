@@ -27,12 +27,15 @@
 %
 
 function result = classify(patient, architeture, trainingStyle, trainFun, learnFun, numLayers, actFun1, actFun2, actFun3, numHiddenNeurons)
+    file_name = "";
+
     % Choosing patient A or B
-    
     if(patient == 1)
         load '../dataset/44202.mat' FeatVectSel Trg
+        file_name = file_name + "44202_";
     elseif(patient == 2)
         load '../dataset/63502.mat' FeatVectSel Trg
+        file_name = file_name + "63502_";
     end
     P = FeatVectSel;
     T = correctTarget(Trg);
@@ -51,11 +54,11 @@ function result = classify(patient, architeture, trainingStyle, trainFun, learnF
     data_treino = data_treino';
     target_treino = target_treino';
 
+    %balacing train
 
-    %file name
-    file_name = "";
 
-    % SHALLOW NETS 
+
+    %-------------------- SHALLOW NETS -------------------- 
     if(architeture == 1 || architeture == 2)
         hiddenLayers = (1:numLayers);
         hiddenLayers(1,:) = numHiddenNeurons;
@@ -74,24 +77,27 @@ function result = classify(patient, architeture, trainingStyle, trainFun, learnF
         end
 
         %activation 
-        if(numLayers < 2)
+        if(numLayers == 1)
             net.layers{1}.transferFcn = actFun1;
             file_name = file_name + actFun1;
-        elseif(numLayers < 3)
+        elseif(numLayers == 2)
+            net.layers{1}.transferFcn = actFun1;
             net.layers{2}.transferFcn = actFun2;
-            file_name = file_name + actFun2;
-        elseif(numLayers < 4)
+            file_name = file_name + actFun1 + "_" + actFun2;
+        elseif(numLayers == 3)
+            net.layers{1}.transferFcn = actFun1;
+            net.layers{2}.transferFcn = actFun2;
             net.layers{3}.transferFcn = actFun3;
-            file_name = file_name + actFun3;
+            file_name = file_name + actFun1 + "_" + actFun2 + "_" + actFun3;
         end
         
-        file_name = file_name + ".mat";
+        file_name = file_name + ".mat"
         
         net = train(net, data_treino, target_treino);
         result = net(data_test);
         perf = perform(net,data_test,target_test)
 
-    % DEEP NETS
+    %-------------------- DEEP NETS --------------------
     elseif(architeture == 3)
 
     elseif(architeture == 4)
