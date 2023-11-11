@@ -2,7 +2,7 @@
 %   1 -> 44202.mat
 %   2 -> 63502.mat
 % ARCHITETURES :
-%   shallow -> tansig, purelin, sigmoidal ...
+%   shallow -> tansig, purelin, sigmoidal ... softmax
 %   1 -> shallow    -> feedfowardnet 
 %   2 -> shallow    -> layrecnet (layer Recurrent Network) with delays
 %   3 -> deep       -> CNN
@@ -10,8 +10,23 @@
 % TRAINING STYLE:
 %   1 -> incremental learning 
 %   2 -> batch learning
+% TRAIN FUN:
+%   if traningStyle == 1(Incremental):
+%       trainFun:
+%           trainc
+%           trainr
+%           LEARN FUN:
+%              learngd
+%              learngdm
+%   
+%   if trainingStyle == 2(batch):
+%       trainFun:
+%           traingd
+%           traingdm
+%           trainlm
+%
 
-function result = classify(patient, architeture, trainingStyle, numLayers, numHiddenNeurons)
+function result = classify(patient, architeture, trainingStyle, trainFun, learnFun, numLayers, actFun1, actFun2, actFun3, numHiddenNeurons)
     % Choosing patient A or B
     
     if(patient == 1)
@@ -36,29 +51,45 @@ function result = classify(patient, architeture, trainingStyle, numLayers, numHi
     data_treino = data_treino';
     target_treino = target_treino';
 
+
+    %file name
+    file_name = "";
+
     %% SHALLOW NETS 
     
     %feedfowardnet
-    if(architeture == 1)
-        net = feedforwardnet(numHiddenNeurons);
+    if(architeture == 1 || architeture == 2)
+        hiddenLayers = (1:numLayers);
+        hiddenLayers(1,:) = numHiddenNeurons;
+        
+        if(architeture == 1)
+            net = feedforwardnet(hiddenLayers, trainFun);
+            file_name = file_name + "FF_" + numLayers + "_" + " + trainFun + "_";
+        elseif(architeture == 2)
+            net = layrecnet(1:2,hiddenLayers, trainFun);
+            file_name = file_name + "DELAY_" + numLayers + "_" + trainFun + "_";
+        end
         
         if(trainingStyle == 1)
-            net.trainFcn = 'trainc';
-            net.adaptFcn = 'learnp';
-        elseif(trainingStyle == 2)
-            net.trainFcn = 'trainlm';    
+            net.adaptFcn = learnFun;
+            file_name = file_name + learnFun + "_";
         end
 
+
+        %activation 
+        if(numLayers < 2)
+            net.layers{1}.transferFcn = actFun1;
+        elseif(numLayers < 3)
+            net.layers{2}.transferFcn = actFun2;
+        elseif(numLayers < 4)
+            net.layers{3}.transferFcn = actFun3;
+        end
+        
         net = train(net, data_treino, target_treino);
         
         result = net(data_test);
         
         perf = perform(net,data_test,target_test)
-
-    elseif(architeture == 2)
-    
-
-
 
     %% DEEP NETS
     elseif(architeture == 3)
