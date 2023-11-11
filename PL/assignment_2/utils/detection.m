@@ -1,19 +1,18 @@
 function [Sensitivity,Specifit] = detection(result, target)
-    
-    index_pre = find(target(:,2));
-    index_ictal = find(target(:,3));
-    
-    logical_positives = result(index_ictal,2)==target(index_ictal,2);
-    logical_negatives = result(index_pre,3)==target(index_pre,3);
-    
 
-    TP=sum(logical_positives)
-    TN=sum(logical_negatives);
-    
-    FP=length(logical_negatives)-TN;
-    FN=length(logical_positives)-TP;
-
-    Sensitivity=TP/(TP+FN);
-    Specifit=TN/(TN+FP);
+    TP=0; FP=0; TN=0; FN=0;
+    for i=1:length(result)
+        if(result(i)==3 && target(i)==3)
+            TP=TP+1;
+        elseif(result(i)==3 && target(i)~=3)
+            FP=FP+1;
+        elseif(result(i)~=3 && target(i)~=3)
+            TN=TN+1;
+        elseif(result(i)~=3 && target(i)==3)
+            FN=FN+1;
+        end
+    end
+    Sensitivity=TP/(TP+FN)
+    Specifit=TN/(TN+FP)
 
 end
