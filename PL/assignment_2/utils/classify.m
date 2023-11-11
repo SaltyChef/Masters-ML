@@ -51,7 +51,7 @@ function result = classify(patient, architeture, trainingStyle, trainFun, learnF
     target_test = T(breakingIndex+1:end , :);
     
     %balacing train
-    [data_treino, target_treino] = balanceTrainSet(data_treino, target_treino);  
+    %[data_treino, target_treino] = balanceTrainSet(data_treino, target_treino);  
 
     % INVERTING P AND T
     data_treino = data_treino';
