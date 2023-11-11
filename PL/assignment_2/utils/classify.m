@@ -51,7 +51,7 @@ function result = classify(patient, architeture, trainingStyle, trainFun, learnF
     target_test = T(breakingIndex+1:end , :);
     
     %balacing train
-    % [data_treino, target_treino] = balanceTrainSet(data_treino, target_treino);  
+    [data_treino, target_treino] = balanceTrainSet(data_treino, target_treino);  
 
     % INVERTING P AND T
     data_treino = data_treino';
@@ -107,20 +107,13 @@ function result = classify(patient, architeture, trainingStyle, trainFun, learnF
         pInter = dimTotal/dimInter;
         pPre = dimTotal/dimPreictal;
         pIctal = dimTotal/dimIctal;
-        pInter
-        pPre
-        pIctal
         EW = all(target_treino==[1 0 0]')*pInter + all(target_treino==[0 1 0]')*pPre + all(target_treino==[0 0 1]')*pIctal;
         
         net = train(net, data_treino,target_treino,[],[],EW);
         save(file_name,"net");
         result = net(data_test);
         view(net);
-        
-        [sensitivity_dec, specifit_dec] = detection(result, target_test);
-        [sensitivity_pred, specifit_pred] = prediction(result, target_test);
-        sensitivity_dec
-
+   
     %-------------------- DEEP NETS --------------------
     elseif(architeture == 3)
 
