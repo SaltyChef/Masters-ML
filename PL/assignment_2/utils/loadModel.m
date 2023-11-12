@@ -1,14 +1,14 @@
 function loadModel(patient, file_name)
-    load ../models/classifiers/44202_FF_3L_10HN_traingd_purelin_purelin_purelin.mat;
+    file_name = "../models/classifiers/" + file_name;
+    load(file_name) ;
     
     % Choosing patient A or B
     if(patient == 1)
         load '../dataset/44202.mat' FeatVectSel Trg;
-        file_name = file_name + "44202_";
     elseif(patient == 2)
         load '../dataset/63502.mat' FeatVectSel Trg;
-        file_name = file_name + "63502_";
     end
+    
     P = FeatVectSel;
     T = correctTarget(Trg);
     
