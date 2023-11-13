@@ -26,7 +26,7 @@
 %           trainlm
 %
 
-function result = classify(patient,hasBalance, hasEW, architeture, trainingStyle, trainFun, learnFun, numLayers, numHiddenNeurons, actFun1, actFun2, actFun3)
+function result = shallowClassify(patient,hasBalance, hasEW, architeture, trainingStyle, trainFun, learnFun, numLayers, numHiddenNeurons, actFun1, actFun2, actFun3)
     file_name = "../models/classifiers/";
 
     % Choosing patient A or B
@@ -103,21 +103,10 @@ function result = classify(patient,hasBalance, hasEW, architeture, trainingStyle
         end
         
         file_name = file_name + ".mat";
-
-       
-        
-        
         net = train(net, data_treino,target_treino,[],[],EW);
         save(file_name,"net");
         result = net(data_test);
         view(net);
-   
-    %-------------------- DEEP NETS --------------------
-    elseif(architeture == 3)
-
-    elseif(architeture == 4)
-
-
     end
 
 
