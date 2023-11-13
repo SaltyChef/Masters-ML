@@ -11,6 +11,9 @@ function loadModel(patient, file_name)
     end
     P = FeatVectSel;
     T = correctTarget(Trg);
+
+    auto =trainAutoencoder(P);
+    P=predict(auto,P);
     
     % Divinding the dataset and target into treino + test
     percentage = 0.85;
