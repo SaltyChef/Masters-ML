@@ -1,19 +1,17 @@
 function loadModel(patient, file_name)
-    load ../models/classifiers/44202_FF_2L_10HN_trainlm_purelin_purelin.mat;
+    load ../models/classifiers/44202_AUTO_BEW_FF_2L_10HN_trainlm_logsig_tansig_softmax.mat;
     
     % Choosing patient A or B
     if(patient == 1)
         load '../dataset/44202.mat' FeatVectSel Trg;
-        file_name = file_name + "44202_";
     elseif(patient == 2)
         load '../dataset/63502.mat' FeatVectSel Trg;
-        file_name = file_name + "63502_";
     end
     P = FeatVectSel;
     T = correctTarget(Trg);
 
-    auto =trainAutoencoder(P);
-    P=predict(auto,P);
+    % auto =trainAutoencoder(P);
+    % P=predict(auto,P);
     
     % Divinding the dataset and target into treino + test
     percentage = 0.85;

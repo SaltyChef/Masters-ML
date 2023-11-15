@@ -26,9 +26,10 @@
 %           trainlm
 %
 
-function result = shallowClassify(patient,hasBalance, hasEW, architeture, trainingStyle, trainFun, learnFun, numLayers, numHiddenNeurons, actFun1, actFun2, actFun3)
+function result = shallowClassify(patient,hasBalance, hasEW, hasEnconding, architeture, trainingStyle , ...
+                                  trainFun, learnFun, numLayers, numHiddenNeurons, actFun1, actFun2, actFun3, hasSoftmax)
     file_name = "../models/classifiers/";
-
+    
     % Choosing patient A or B
     if(patient == 1)
         load '../dataset/44202.mat' FeatVectSel Trg
@@ -40,6 +41,20 @@ function result = shallowClassify(patient,hasBalance, hasEW, architeture, traini
     P = FeatVectSel;
     T = correctTarget(Trg);
     
+    
+    %Has Auto-enconders
+    if(hasEnconding)
+        if(patient == 1)
+            load '../models/encoders/autoCoender44202.mat' auto
+        elseif(patient == 2)
+            load '../models/encoders/autoCoender63502.mat' auto
+        end
+        file_name = file_name + "AUTO_";
+        P = predict(auto,P);
+    end
+
+
+
     % Divinding the dataset and target into treino + test
     percentage = 0.85;
     
@@ -67,8 +82,6 @@ function result = shallowClassify(patient,hasBalance, hasEW, architeture, traini
         EW = errorWeights(target_treino);
         file_name = file_name + "EW_";
     end
-
-
     %-------------------- SHALLOW NETS -------------------- 
     if(architeture == 1 || architeture == 2)
         hiddenLayers = (1:numLayers);
@@ -81,7 +94,7 @@ function result = shallowClassify(patient,hasBalance, hasEW, architeture, traini
             net = layrecnet(1:2 , hiddenLayers , trainFun);
             file_name = file_name + "DELAY_" + numLayers + "L_" + numHiddenNeurons + "HN_" + trainFun + "_";
         end
-        
+      
         if(trainingStyle == 1)
             net.adaptFcn = learnFun;
             file_name = file_name + learnFun + "_";
@@ -91,22 +104,48 @@ function result = shallowClassify(patient,hasBalance, hasEW, architeture, traini
         if(numLayers == 1)
             net.layers{1}.transferFcn = actFun1;
             file_name = file_name + actFun1;
+            if(hasSoftmax)
+                net.layers{2}.transferFcn = "softmax";
+                file_name = file_name + "_softmax";
+            end
         elseif(numLayers == 2)
             net.layers{1}.transferFcn = actFun1;
             net.layers{2}.transferFcn = actFun2;
             file_name = file_name + actFun1 + "_" + actFun2;
+            if(hasSoftmax)
+                net.layers{3}.transferFcn = "softmax";
+                file_name = file_name + "_softmax";
+            end
         elseif(numLayers == 3)
             net.layers{1}.transferFcn = actFun1;
             net.layers{2}.transferFcn = actFun2;
             net.layers{3}.transferFcn = actFun3;
             file_name = file_name + actFun1 + "_" + actFun2 + "_" + actFun3;
+            if(hasSoftmax)
+                net.layers{4}.transferFcn = "softmax";
+                file_name = file_name + "_softmax";
+            end
         end
         
+        net.trainParam.epochs = 100;
+        
+
         file_name = file_name + ".mat";
-        net = train(net, data_treino,target_treino,[],[],EW);
+        if(hasEW)
+            net = train(net, data_treino,target_treino,[],[],EW);
+        else
+            net = train(net, data_treino,target_treino);
+        end
+
         save(file_name,"net");
         result = net(data_test);
         view(net);
+        
+        [~,result] = max(result);
+        [~,target_test] = max(target_test);
+        [sensitivity_dec, specifit_dec] = detection(result, target_test);
+        [sensitivity_pred, specifit_pred] = prediction(result, target_test);
+
     end
 
 
