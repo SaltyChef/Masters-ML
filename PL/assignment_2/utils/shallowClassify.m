@@ -45,9 +45,9 @@ function result = shallowClassify(patient,hasBalance, hasEW, hasEnconding, archi
     %Has Auto-enconders
     if(hasEnconding)
         if(patient == 1)
-            load '../models/encoders/autoCoender44202.mat' auto
+            load '../models/autocoender/autoCoender44202.mat' auto
         elseif(patient == 2)
-            load '../models/encoders/autoCoender63502.mat' auto
+            load '../models/autocoender/autoCoender63502.mat' auto
         end
         file_name = file_name + "AUTO_";
         P = predict(auto,P);

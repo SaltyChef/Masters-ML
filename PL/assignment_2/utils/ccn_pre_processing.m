@@ -38,6 +38,9 @@ function [data_4D, Target_4D] = ccn_pre_processing(data, target)
         end
     end
     
+    %dimensao das imagens do preictal + ictal + posictal
+    dim_total_ictal = dim_pre + dim_ictal;
+
     dim_inter = 0;
     %divisao da classe interictal em varias imagens, com janelas de 29
     %momentos

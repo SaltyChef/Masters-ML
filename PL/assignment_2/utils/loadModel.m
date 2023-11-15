@@ -1,5 +1,5 @@
 function loadModel(patient, file_name)
-    load ../models/classifiers/44202_AUTO_BEW_FF_2L_10HN_trainlm_logsig_tansig_softmax.mat;
+    load ../models/classifiers/44202_DELAY_3L_10HN_trainlm_purelin_purelin_purelin_softmax.mat;
     
     % Choosing patient A or B
     if(patient == 1)
