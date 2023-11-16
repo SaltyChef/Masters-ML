@@ -25,7 +25,7 @@ function [ffRealTrg, ffRealFVS, fRealTrg, fRealFVS] = SetCreation(FeatVectSel,Tr
             fRealTrg(3,i) = 1;
         end
     end
-
+    
     ind_interictal = find(realTrg == 1);
     ind_preictal = find(realTrg == 2);
     ind_ictal = find(realTrg == 3); %retirar indices de cada fase

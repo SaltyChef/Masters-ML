@@ -14,10 +14,19 @@ function resultado = cnnClassify(patient, hasBalance, Pool, PoolSize,PoolStride,
         load '../dataset/63502.mat' FeatVectSel Trg
         file_name = file_name + "63502_";
     end
-
-    P = FeatVectSel;
-    T = correctTarget(Trg);
     
+    % Divinding the dataset and target into treino + test
+    percentage = 0.85;
+    
+    breakingIndex = round(length(FeatVectSel) * percentage);
+    
+    data_treino = FeatVectSel(1:breakingIndex, :);
+    target_treino = Trg(1:breakingIndex, :);
+    
+    P = data_treino';
+    T = correctTarget(target_treino);
+    T = T';
+    size(T)
     %balacing train
     if(hasBalance)
         [P, T] = balanceTrainSet(P, T);  
@@ -29,31 +38,44 @@ function resultado = cnnClassify(patient, hasBalance, Pool, PoolSize,PoolStride,
     %CNN
     
     [data_4D, target_4D] = ccn_pre_processing(P,  T);
-    size(data_4D)
-    size(target_4D)
+    
     %Defines the pooling of CNN (max or average)
-    if (strcmp(Pool, 'max') == 1)
+    if (strcmp(Pool, 'max'))
         pooling = maxPooling2dLayer(PoolSize,'Stride',PoolStride);
-    elseif (strcmp(Pool, 'average') == 1)
+    elseif (strcmp(Pool, 'average'))
         pooling = averagePooling2dLayer(PoolSize,'Stride',PoolStride);
     end
-    file_name = file_name + PoolStride + "_"+ PoolSize + "_" + PoolStride + "_" + NumFilters + "_"+ FilterSize + "_"+ numLayers + "_" + layerStride+ "_"+maxEpochs;
+    file_name = file_name + PoolStride + "_PSize"+ PoolSize + "_PStride" + PoolStride + "_NF" + NumFilters + "_FS"+ FilterSize + "_NL"+ numLayers + "_LS" + layerStride+ "_E"+maxEpochs;
 
     %defines the number of convulational layers
     if numLayers == 1 || numLayers == 2
         layers = [imageInputLayer([29 29 1]), 
-            convolution2dLayer(FilterSize,NumFilters,'Padding','same'), 
+            convolution2dLayer(FilterSize, NumFilters, 'Stride', layerStride,'Padding','same'), 
             batchNormalizationLayer, 
             reluLayer, 
             pooling, 
             convolution2dLayer(FilterSize,NumFilters), 
             batchNormalizationLayer, 
             reluLayer, 
-            fullyConnectedLayer(2), 
+            fullyConnectedLayer(3), 
             softmaxLayer, 
-            classificationLayer()];
+            classificationLayer];
     elseif numLayers == 3
-        layers = [imageInputLayer([29 29 1]), convolution2dLayer(FilterSize, NumFilters, 'Stride', layerStride, 'Padding', 'same'), batchNormalizationLayer, reluLayer, pooling, convolution2dLayer(FilterSize, NumFilters), batchNormalizationLayer, reluLayer, pooling, convolution2dLayer(FilterSize, NumFilters), batchNormalizationLayer, reluLayer, fullyConnectedLayer(2), softmaxLayer, classificationLayer];
+        layers = [imageInputLayer([29 29 1]), 
+            convolution2dLayer(FilterSize, NumFilters, 'Stride', layerStride, 'Padding', 'same'), 
+            batchNormalizationLayer, 
+            reluLayer, 
+            pooling, 
+            convolution2dLayer(FilterSize, NumFilters), 
+            batchNormalizationLayer, 
+            reluLayer, 
+            pooling, 
+            convolution2dLayer(FilterSize, NumFilters), 
+            batchNormalizationLayer, 
+            reluLayer, 
+            fullyConnectedLayer(3), 
+            softmaxLayer, 
+            classificationLayer];
     elseif numLayers == 4
         layers = [imageInputLayer([29 29 1]), 
             convolution2dLayer(FilterSize,NumFilters,'Stride',layerStride,'Padding','same'), 
@@ -71,7 +93,7 @@ function resultado = cnnClassify(patient, hasBalance, Pool, PoolSize,PoolStride,
             convolution2dLayer(FilterSize,NumFilters), 
             batchNormalizationLayer, 
             reluLayer, 
-            fullyConnectedLayer(2), 
+            fullyConnectedLayer(3), 
             softmaxLayer, 
             classificationLayer];
     elseif numLayers == 5
@@ -95,7 +117,7 @@ function resultado = cnnClassify(patient, hasBalance, Pool, PoolSize,PoolStride,
             convolution2dLayer(FilterSize,NumFilters), 
             batchNormalizationLayer, 
             reluLayer, 
-            fullyConnectedLayer(2), 
+            fullyConnectedLayer(3), 
             softmaxLayer, 
             classificationLayer];
     end

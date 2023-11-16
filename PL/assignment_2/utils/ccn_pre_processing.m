@@ -3,13 +3,13 @@ function [data_4D, Target_4D] = ccn_pre_processing(data, target)
     %Procurar todos os indices de cada classe
     ind_interictal = find(target(1,:) == 1);
     ind_preictal = find(target(2,:) == 1);
-    ind_ictal = find(target(3,:) == 1);
-
+    ind_ictal = find(target(3,:) == 1); 
+    
     %Procurar features correspondentes a cada classe
     data_inter = data(:,ind_interictal);
     data_pre = data(:,ind_preictal);
     data_ictal = data(:,ind_ictal);
-
+    
     %configuracao das imagens de cada classe
     cell = {}; 
     
