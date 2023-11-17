@@ -13,14 +13,8 @@ function resultado = LSTM(P,T, hasBalance)
     data_treino = XTrain(1:breakingIndex, :);
     target_treino = YTrain(1:breakingIndex, :);
     
-
-     
-
-
     data_treino=num2cell(data_treino',1);
    
-
-
     target_treino=categorical(target_treino);
 
     numFeatures=29;

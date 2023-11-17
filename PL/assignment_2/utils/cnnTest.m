@@ -1,8 +1,14 @@
 %funçao que testa o modelo de CNN
-function resultado = cnnTest(P, T)
+function resultado = cnnTest(patient)
     
-    load ../models/classifiers/44202_1_PSize1_PStride1_NF15_FS10_NL2_LS1_E100.mat;
-
+    load ../models/classifiers/CNN_63502_B1_PSize1_PStride1_NF20_FS5_NL5_LS1_E100.mat;
+    if(patient == 1)
+        load '../dataset/44202.mat' FeatVectSel Trg
+    elseif(patient == 2)
+        load '../dataset/63502.mat' FeatVectSel Trg 
+    end
+    P = FeatVectSel;
+    T = Trg;
     % Divinding the dataset and target into treino + test
     [data_treino,data_test,target_treino,target_test] = divideDataset(P,T ,0.85);
     
