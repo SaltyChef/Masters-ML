@@ -41,7 +41,6 @@ function result = shallowClassify(patient,hasBalance, hasEW, hasEnconding, archi
     P = FeatVectSel;
     T = correctTarget(Trg);
     
-    
     %Has Auto-enconders
     if(hasEnconding)
         if(patient == 1)
@@ -53,18 +52,10 @@ function result = shallowClassify(patient,hasBalance, hasEW, hasEnconding, archi
         P = predict(auto,P);
     end
 
-
-
     % Divinding the dataset and target into treino + test
-    percentage = 0.85;
-    
-    breakingIndex = round(length(P) * percentage);
-    data_treino = P(1:breakingIndex, :);
-    data_test = P(breakingIndex+1:end , :);
-    
-    target_treino = T(1:breakingIndex, :);
-    target_test = T(breakingIndex+1:end , :);
-    
+    [data_treino,data_test,target_treino,target_test] = divideDataset(P,T ,0.85);
+
+
     % INVERTING P AND T
     data_treino = data_treino';
     target_treino = target_treino';
@@ -73,7 +64,7 @@ function result = shallowClassify(patient,hasBalance, hasEW, hasEnconding, archi
 
     %balacing train
     if(hasBalance == 1)
-        %[data_treino, target_treino] = balanceTrainSet(data_treino, target_treino);  
+        [data_treino, target_treino] = balanceTrainSet(data_treino, target_treino);  
         file_name = file_name + "B";
     end
 
@@ -128,7 +119,6 @@ function result = shallowClassify(patient,hasBalance, hasEW, hasEnconding, archi
         end
         
         net.trainParam.epochs = 100;
-        
 
         file_name = file_name + ".mat";
         if(hasEW)

@@ -3,9 +3,11 @@
 %solverName     ->  adam
 %pool           ->  max | average
 %hasEnconding   ->  0 -> no | 1->yes
-function resultado = cnnClassify(patient, hasBalance, Pool, PoolSize,PoolStride,NumFilters,FilterSize, numLayers, layerStride, maxEpochs)
-    file_name = "../models/classifiers/";
+function resultado = cnnClassify(patient, hasBalance,Pool, PoolSize, PoolStride, ...
+                                            NumFilters,FilterSize, numLayers, layerStride, maxEpochs)
     
+    file_name = "../models/classifiers/CNN_";
+
     % Choosing patient A or B
     if(patient == 1)
         load '../dataset/44202.mat' FeatVectSel Trg
@@ -14,22 +16,18 @@ function resultado = cnnClassify(patient, hasBalance, Pool, PoolSize,PoolStride,
         load '../dataset/63502.mat' FeatVectSel Trg
         file_name = file_name + "63502_";
     end
-    
+    P = FeatVectSel;
+    T = correctTarget(Trg);
+
     % Divinding the dataset and target into treino + test
-    percentage = 0.85;
+    [data_treino,data_test,target_treino,target_test] = divideDataset(P,T ,0.85);
     
-    breakingIndex = round(length(FeatVectSel) * percentage);
+    data_treino = data_treino';
+    target_treino= target_treino';
     
-    data_treino = FeatVectSel(1:breakingIndex, :);
-    target_treino = Trg(1:breakingIndex, :);
-    
-    P = data_treino';
-    T = correctTarget(target_treino);
-    T = T';
-    size(T)
     %balacing train
     if(hasBalance)
-        [P, T] = balanceTrainSet(P, T);  
+        [data_treino, target_treino] = balanceTrainSet(data_treino, target_treino);  
         file_name = file_name + "B";
     end
     
@@ -37,7 +35,7 @@ function resultado = cnnClassify(patient, hasBalance, Pool, PoolSize,PoolStride,
     %-------------------- DEEP NETS --------------------
     %CNN
     
-    [data_4D, target_4D] = ccn_pre_processing(P,  T);
+    [data_4D, target_4D] = ccn_pre_processing(data_treino,  target_treino);
     
     %Defines the pooling of CNN (max or average)
     if (strcmp(Pool, 'max'))

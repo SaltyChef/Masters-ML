@@ -1,7 +1,5 @@
 function [sens_pred, spec_pred, sens_det, spec_det] = confMatrix(result, target)
     
-
-
     conf_matrix = confusionmat(target,result);
     confusionchart(conf_matrix)
     
@@ -15,8 +13,6 @@ function [sens_pred, spec_pred, sens_det, spec_det] = confMatrix(result, target)
     FP_detection= conf_matrix(1,3) + conf_matrix(2,3);
     TN_detection= conf_matrix(1,1) + conf_matrix(2,2);
 
-   
-    %Calculate confusion matrix based on formulas specified on report   
     sens_pred = TP_predict/(TP_predict+FN_predict);
     spec_pred = TN_predict/(TN_predict+FP_predict);
 
