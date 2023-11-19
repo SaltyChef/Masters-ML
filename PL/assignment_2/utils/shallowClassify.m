@@ -5,8 +5,6 @@
 %   shallow -> tansig, purelin, sigmoidal ... softmax
 %   1 -> shallow    -> feedfowardnet 
 %   2 -> shallow    -> layrecnet (layer Recurrent Network) with delays
-%   3 -> deep       -> CNN
-%   4 -> deep       -> LSTM
 % TRAINING STYLE:
 %   1 -> incremental learning 
 %   2 -> batch learning
@@ -26,7 +24,7 @@
 %           trainlm
 %
 
-function result = shallowClassify(patient,hasBalance, hasEW, hasEnconding, architeture, trainingStyle , ...
+function resultado = shallowClassify(patient,hasBalance, hasEW, hasEnconding, architeture, trainingStyle , ...
                                   trainFun, learnFun, numLayers, numHiddenNeurons, actFun1, actFun2, actFun3, hasSoftmax)
     file_name = "../models/classifiers/";
     
@@ -118,7 +116,7 @@ function result = shallowClassify(patient,hasBalance, hasEW, hasEnconding, archi
             end
         end
         
-        net.trainParam.epochs = 100;
+        net.trainParam.epochs = 1000;
 
         file_name = file_name + ".mat";
         if(hasEW)
@@ -133,8 +131,10 @@ function result = shallowClassify(patient,hasBalance, hasEW, hasEnconding, archi
         
         [~,result] = max(result);
         [~,target_test] = max(target_test);
-        [sensitivity_dec, specifit_dec] = detection(result, target_test);
-        [sensitivity_pred, specifit_pred] = prediction(result, target_test);
+        % [sensitivity_pred, specifit_pred] = prediction(result, target_test);
+        % [sensitivity_dec, specifit_dec] = detection(result, target_test);
+        [sens_pred, spec_pred, sens_det, spec_det] = confMatrix(result, target_test)
+
 
     end
 

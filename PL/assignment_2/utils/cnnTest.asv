@@ -18,6 +18,9 @@ function resultado = cnnTest(patient)
     data_test = data_test';
     target_test = target_test';
 
+    
+ 
+
     [data_4D_test, target_4D_test] = ccn_pre_processing(data_test,  target_test);
 
     result = classify(net, data_4D_test);

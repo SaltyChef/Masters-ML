@@ -1,5 +1,6 @@
-function loadModel(patient, architeture)
-    load ../models/classifiers/44202_1_1_1_15_10_3_1_100.mat;
+function resultado = loadModel(patient)
+    load ../models/classifiers/63502_AUTO_BEW_DELAY_2L_10HN_trainlm_logsig_logsig_softmax.mat;
+
     
     % Choosing patient A or B
     if(patient == 1)
@@ -17,18 +18,15 @@ function loadModel(patient, architeture)
     data_test = data_test';
     target_test = target_test';
 
-    %FF e delay
-    if(architeture == 1)   
-        view(net);
-        result = net(data_test);
-        [~,result] = max(result);
-        [~,target_test] = max(target_test);
-        [sensitivity_dec, specifit_dec] = detection(result, target_test);
-        [sensitivity_pred, specifit_pred] = prediction(result, target_test);
-    else(architeture == 2)
-        [data_4D, target_4D] = ccn_pre_processing(data_test, target_test);
-        result = classify(net, data_4D);
-        [sensitivity_dec, specifit_dec] = detection2(result, target_4D);
-        [sensitivity_pred, specifit_pred] = prediction2(result, target_4D);
-    end
+    view(net);
+    result = net(data_test);
+    [~,result] = max(result);
+    [~,target_test] = max(target_test);
+    figure(1)
+    plot(result);
+
+
+    [sens_pred, spec_pred, sens_det, spec_det] = confMatrix(result, target_test)
+    postProcessing(result, target_test)
+
 end

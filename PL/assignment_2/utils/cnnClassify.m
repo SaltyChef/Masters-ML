@@ -2,8 +2,7 @@
 %hasBalance     ->  0 -> no | 1->yes
 %solverName     ->  adam
 %pool           ->  max | average
-%hasEnconding   ->  0 -> no | 1->yes
-function resultado = cnnClassify(patient, hasBalance,Pool, PoolSize, PoolStride, ...
+function resultado = cnnClassify(patient, hasBalance, hasEnconding, Pool, PoolSize, PoolStride, ...
                                             NumFilters,FilterSize, numLayers, layerStride, maxEpochs)
     
     file_name = "../models/classifiers/CNN_";
@@ -18,6 +17,19 @@ function resultado = cnnClassify(patient, hasBalance,Pool, PoolSize, PoolStride,
     end
     P = FeatVectSel;
     T = correctTarget(Trg);
+    
+    %Has Auto-enconders
+    if(hasEnconding)
+        if(patient == 1)
+            load '../models/autocoender/autoCoender44202.mat' auto
+        elseif(patient == 2)
+            load '../models/autocoender/autoCoender63502.mat' auto
+        end
+        file_name = file_name + "AUTO_";
+        P = predict(auto,P);
+    end
+
+
 
     % Divinding the dataset and target into treino + test
     [data_treino,data_test,target_treino,target_test] = divideDataset(P,T ,0.85);
