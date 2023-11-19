@@ -5,6 +5,18 @@
 function [sens_pred_1, spec_pred_1, sens_det_1, spec_det_1,sens_pred_2, spec_pred_2, sens_det_2, spec_det_2] = cnnClassify(patient, hasBalance, hasEnconding, Pool, PoolSize, PoolStride, ...
                                             NumFilters,FilterSize, numLayers, layerStride, maxEpochs)
     
+    patient
+    hasBalance
+    hasEnconding
+    Pool
+    PoolSize
+    PoolStride
+    NumFilters
+    FilterSize
+    numLayers
+    layerStride
+    maxEpochs
+    
     file_name = "../models/classifiers/CNN_";
 
     % Choosing patient A or B
@@ -136,8 +148,6 @@ function [sens_pred_1, spec_pred_1, sens_det_1, spec_det_1,sens_pred_2, spec_pre
     options = trainingOptions('adam', ...
         'Plots','training-progress','Verbose',0, ...
         'MaxEpochs',maxEpochs, ...
-        'Shuffle', ...
-        'every-epoch', ...
         'InitialLearnRate', 0.01, ...
         'ExecutionEnvironment','cpu');
    
