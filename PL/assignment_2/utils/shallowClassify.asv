@@ -24,16 +24,20 @@
 %           trainlm
 %
 
-function [sens_pred_1, spec_pred_1, sens_det_1, spec_det_1, sens_pred_2, spec_pred_2, sens_det_2, spec_det_2] = shallowClassify(patient,hasBalance, hasEW, hasEnconding, architeture, trainingStyle , ...
+function [sens_pred, spec_pred, sens_det, spec_det] = shallowClassify(patient,hasBalance, hasEW, hasEnconding, architeture, trainingStyle , ...
                                   trainFun, learnFun, numLayers, numHiddenNeurons, actFun1, actFun2, actFun3, hasSoftmax)
     file_name = "../models/classifiers/";
 
     % Choosing patient A or B
     if(patient == 1)
-         load '../dataset/44202.mat' FeatVectSel Trg
+        FeatVectSel=load("../dataset/44202.mat","FeatVectSel");
+        Trg=load("../dataset/44202.mat","Trg");
+        % load '../dataset/44202.mat' FeatVectSel Trg
         file_name = file_name + "44202_";
     elseif(patient == 2)
-         load '../dataset/63502.mat' FeatVectSel Trg
+        FeatVectSel=load("../dataset/63502.mat","FeatVectSel");
+        Trg=load("../dataset/63502.mat","Trg");
+        % load '../dataset/63502.mat' FeatVectSel Trg
         file_name = file_name + "63502_";
     end
     P = FeatVectSel;
@@ -119,23 +123,22 @@ function [sens_pred_1, spec_pred_1, sens_det_1, spec_det_1, sens_pred_2, spec_pr
         net.trainParam.epochs = 1000;
 
         file_name = file_name + ".mat";
-        view(net);
         if(hasEW)
             net = train(net, data_treino,target_treino,[],[],EW);
         else
             net = train(net, data_treino,target_treino);
         end
 
-        save("custom","net");
+        save(file_name,"net");
         result = net(data_test);
-
+        view(net);
  
         [~,result] = max(result);
         [~,target_test] = max(target_test);
         % [sensitivity_pred, specifit_pred] = prediction(result, target_test);
         % [sensitivity_dec, specifit_dec] = detection(result, target_test);
-        [sens_pred_1, spec_pred_1, sens_det_1, spec_det_1] = confMatrix(result, target_test);
-        [sens_pred_2, spec_pred_2, sens_det_2, spec_det_2]=postProcessing(result, target_test);
+        [sens_pred, spec_pred, sens_det, spec_det] = confMatrix(result, target_test)
+
 
     end
 

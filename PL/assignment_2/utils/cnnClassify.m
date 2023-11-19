@@ -2,7 +2,7 @@
 %hasBalance     ->  0 -> no | 1->yes
 %solverName     ->  adam
 %pool           ->  max | average
-function resultado = cnnClassify(patient, hasBalance, hasEnconding, Pool, PoolSize, PoolStride, ...
+function [sens_pred_1, spec_pred_1, sens_det_1, spec_det_1,sens_pred_2, spec_pred_2, sens_det_2, spec_det_2] = cnnClassify(patient, hasBalance, hasEnconding, Pool, PoolSize, PoolStride, ...
                                             NumFilters,FilterSize, numLayers, layerStride, maxEpochs)
     
     file_name = "../models/classifiers/CNN_";
@@ -143,6 +143,16 @@ function resultado = cnnClassify(patient, hasBalance, hasEnconding, Pool, PoolSi
    
     net = trainNetwork(data_4D, target_4D, layers, options);
     
-    save(file_name,"net");
+    save("custom","net");
+
+    [data_4D_test, target_4D_test] = ccn_pre_processing(data_test',  target_test');
+    
+    result = classify(net, data_4D_test);
+    
+    target_test = grp2idx(target_4D_test)';
+    result = grp2idx(result)';
+    
+    [sens_pred_1, spec_pred_1, sens_det_1, spec_det_1] = confMatrix(result, target_test);
+    [sens_pred_2, spec_pred_2, sens_det_2, spec_det_2]=postProcessing(result, target_test);
     
 end

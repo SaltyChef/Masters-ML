@@ -1,4 +1,4 @@
-function  postProcessing(result, target)
+function [sens_pred, spec_pred, sens_det, spec_det]= postProcessing(result, target)
     
     indexes = [];
     count = [0 0 0];
@@ -21,5 +21,5 @@ function  postProcessing(result, target)
 
     result = result(indexes);
     target = target(indexes);
-    [sens_pred, spec_pred, sens_det, spec_det] = confMatrix(result, target)
+    [sens_pred, spec_pred, sens_det, spec_det] = confMatrix(result, target);
 end

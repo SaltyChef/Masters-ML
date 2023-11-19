@@ -1,5 +1,5 @@
-function resultado = LSTM(patient, hasBalance, hasEnconding, numFeatures, numHiddenUnits, maxEphocs)
-    
+function [sens_pred_1, spec_pred_1, sens_det_1, spec_det_1,sens_pred_2, spec_pred_2, sens_det_2, spec_det_2] = LSTM(patient, hasBalance, hasEnconding, numHiddenUnits, maxEphocs)
+    numFeatures=29;
     file_name = "../models/classifiers/LSTM_";
 
     % Choosing patient A or B
@@ -66,7 +66,19 @@ function resultado = LSTM(patient, hasBalance, hasEnconding, numFeatures, numHid
     net=trainNetwork(data_treino , target_treino,layers,options);
 
     file_name = file_name + numFeatures + "F_" +numHiddenUnits+"H_" + maxEphocs + "Ep.mat";
-    save(file_name,"net");
+    save("custom","net");
+    
+    data_test=num2cell(data_test,1);
+  
+    target_test=categorical(target_test);
 
+    result = classify(net, data_test);
+     
+    target = grp2idx(target_test)';
+    result = grp2idx(result)';
+
+
+    [sens_pred_1, spec_pred_1, sens_det_1, spec_det_1] = confMatrix(result, target);
+    [sens_pred_2, spec_pred_2, sens_det_2, spec_det_2]=postProcessing(result, target);
 
 end
