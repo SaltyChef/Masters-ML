@@ -1,4 +1,6 @@
-%Função que organiza o data para data em 4D
+%Transforms the data and target 2D matrix's into a 4D cell matrix knowing that
+%has 29 features. Addicionaly categorizes the target with the categorical
+%function
 function [data_4D, Target_4D] = ccn_pre_processing(data, target)
     
     ind_interictal = find(target(1,:) == 1);
@@ -13,11 +15,10 @@ function [data_4D, Target_4D] = ccn_pre_processing(data, target)
     
     dim_pre = 0;
     for i = 1:29:length(ind_preictal)
-        %se ha pelo menos 29 momentos restantes
         if i < length(ind_preictal) - 28
             dim_pre = dim_pre + 1;
-            aux = data_pre(:,i:i+28); %encontra os 29 momentos seguidos
-            cell{end+1,1} = aux; %acrescenta classe ao array cell
+            aux = data_pre(:,i:i+28); 
+            cell{end+1,1} = aux; 
         end
     end
 
