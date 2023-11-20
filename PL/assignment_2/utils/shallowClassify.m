@@ -27,6 +27,21 @@
 function [sens_pred_1, spec_pred_1, sens_det_1, spec_det_1, sens_pred_2, spec_pred_2, sens_det_2, spec_det_2] = shallowClassify(patient,hasBalance, hasEW, hasEnconding, architeture, trainingStyle , ...
                                   trainFun, learnFun, numLayers, numHiddenNeurons, actFun1, actFun2, actFun3, hasSoftmax)
     file_name = "../models/classifiers/";
+    patient
+    hasBalance
+    hasEW
+    hasEnconding
+    architeture
+    trainingStyle
+    trainFun
+    learnFun
+    numLayers
+    numHiddenNeurons
+    actFun1
+    actFun2
+    actFun3
+    hasSoftmax
+
 
     % Choosing patient A or B
     if(patient == 1)
@@ -119,7 +134,7 @@ function [sens_pred_1, spec_pred_1, sens_det_1, spec_det_1, sens_pred_2, spec_pr
         net.trainParam.epochs = 1000;
 
         file_name = file_name + ".mat";
-        view(net);
+        
         if(hasEW)
             net = train(net, data_treino,target_treino,[],[],EW);
         else
@@ -128,7 +143,7 @@ function [sens_pred_1, spec_pred_1, sens_det_1, spec_det_1, sens_pred_2, spec_pr
 
         save("custom","net");
         result = net(data_test);
-
+        view(net);
  
         [~,result] = max(result);
         [~,target_test] = max(target_test);

@@ -1,7 +1,14 @@
 function [sens_pred_1, spec_pred_1, sens_det_1, spec_det_1,sens_pred_2, spec_pred_2, sens_det_2, spec_det_2] = LSTM(patient, hasBalance, hasEnconding, numHiddenUnits, maxEphocs)
     numFeatures=29;
+    patient
+    hasBalance 
+    hasEnconding
+    numHiddenUnits
+    maxEphocs
+    
+    
     file_name = "../models/classifiers/LSTM_";
-
+    
     % Choosing patient A or B
     if(patient == 1)
         load '../dataset/44202.mat' FeatVectSel Trg

@@ -1,6 +1,6 @@
 function resultado = LSTMtest(patient)
     
-    load ../models/classifiers/LSTM_63502_B_29F_30H_10Ep.mat;
+    load ../models/classifiers/LSTM_44202_B_29F_30H_5Ep.mat;
 
      % Choosing patient A or B
     if(patient == 1)
@@ -30,5 +30,5 @@ function resultado = LSTMtest(patient)
     result = grp2idx(result)';
 
 
-    [sens_pred, spec_pred, sens_det, spec_det] = confMatrix(result, target)
-    postProcessing(result, target)
+    [sens_pred_1, spec_pred_1, sens_det_1, spec_det_1] = confMatrix(result, target)
+    [sens_pred_2, spec_pred_2, sens_det_2, spec_det_2] = postProcessing(result, target)

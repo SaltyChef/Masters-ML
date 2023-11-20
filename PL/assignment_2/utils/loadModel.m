@@ -1,5 +1,5 @@
 function resultado = loadModel(patient)
-    load ../models/classifiers/63502_AUTO_BEW_DELAY_2L_10HN_trainlm_logsig_logsig_softmax.mat;
+    load ../models/classifiers/44202_AUTO_BEW_DELAY_1L_10HN_trainlm_purelin_softmax.mat;
 
     
     % Choosing patient A or B
@@ -22,11 +22,7 @@ function resultado = loadModel(patient)
     result = net(data_test);
     [~,result] = max(result);
     [~,target_test] = max(target_test);
-    figure(1)
-    plot(result);
-
-
-    [sens_pred, spec_pred, sens_det, spec_det] = confMatrix(result, target_test)
-    postProcessing(result, target_test)
-
+   
+    [sens_pred_1, spec_pred_1, sens_det_1, spec_det_1] = confMatrix(result, target_test)
+    [sens_pred_2, spec_pred_2, sens_det_2, spec_det_2]=postProcessing(result, target_test)
 end
