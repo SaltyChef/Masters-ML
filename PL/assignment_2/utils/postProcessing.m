@@ -1,3 +1,8 @@
+%This function is used to process the results of every matrix in an attempt
+%to better the results. The way this function works is by getting rid of
+%outlier points, so, for example, in a pre-ictal phase the model might
+%generate singular points of interictal phase (ie. [2 2 2 2 2 2 1 2 2 2])
+%which are deleted (ie.[2 2 2 2 2 2 2 2 2]).
 function [sens_pred, spec_pred, sens_det, spec_det]= postProcessing(result, target)
     
     indexes = [];

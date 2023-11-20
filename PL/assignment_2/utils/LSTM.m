@@ -1,21 +1,13 @@
+%This function was used to train the LSTM models.
+
 function [sens_pred_1, spec_pred_1, sens_det_1, spec_det_1,sens_pred_2, spec_pred_2, sens_det_2, spec_det_2] = LSTM(patient, hasBalance, hasEnconding, numHiddenUnits, maxEphocs)
     numFeatures=29;
-    patient
-    hasBalance 
-    hasEnconding
-    numHiddenUnits
-    maxEphocs
-    
-    
-    file_name = "../models/classifiers/LSTM_";
     
     % Choosing patient A or B
     if(patient == 1)
         load '../dataset/44202.mat' FeatVectSel Trg
-        file_name = file_name + "44202_";
     elseif(patient == 2)
         load '../dataset/63502.mat' FeatVectSel Trg
-        file_name = file_name + "63502_";
     end
     P = FeatVectSel;
     T = correctTarget2(Trg);
@@ -27,7 +19,6 @@ function [sens_pred_1, spec_pred_1, sens_det_1, spec_det_1,sens_pred_2, spec_pre
         elseif(patient == 2)
             load '../models/autocoender/autoCoender63502.mat' auto
         end
-        file_name = file_name + "AUTO_";
         P = predict(auto,P);
     end
 
@@ -44,7 +35,6 @@ function [sens_pred_1, spec_pred_1, sens_det_1, spec_det_1,sens_pred_2, spec_pre
     %balacing train
     if(hasBalance == 1)
         [data_treino, target_treino] = balanceTrainSet(data_treino, target_treino);  
-        file_name = file_name + "B_";
     end
    
    
@@ -71,7 +61,6 @@ function [sens_pred_1, spec_pred_1, sens_det_1, spec_det_1,sens_pred_2, spec_pre
         'Plots','training-progress');
     net=trainNetwork(data_treino , target_treino,layers,options);
 
-    file_name = file_name + numFeatures + "F_" +numHiddenUnits+"H_" + maxEphocs + "Ep.mat";
     save("custom","net");
     
     data_test=num2cell(data_test,1);

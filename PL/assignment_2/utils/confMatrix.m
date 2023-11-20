@@ -1,3 +1,6 @@
+%This function compares the result of the model with the target resolution
+%and returns the confusion matrix as well as the results for the
+%specificity and sensitivity.
 function [sens_pred, spec_pred, sens_det, spec_det] = confMatrix(result, target)
     
     conf_matrix = confusionmat(target,result);

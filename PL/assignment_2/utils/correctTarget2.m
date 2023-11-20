@@ -1,3 +1,6 @@
+%Similarly with the first correct target, this function adequates the
+%target to our needs. Specifically, this one, is used to train and test the
+%LSTM model.
 function  resultado= correctTarget2(T)
     result = ones(length(T),1);
     controle = [];

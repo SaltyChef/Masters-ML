@@ -1,3 +1,7 @@
+%This function is used to transform the given target to a more adequate
+%one. This first function turns the target vector into a 3 collum matrix,
+%where, the position of the number 1 determines the state of the patient at
+%that momment.
 function  resultado= correctTarget(T)
     result = [ones(length(T),1) zeros(length(T),1) zeros(length(T),1)];
     controle = [];

@@ -1,3 +1,5 @@
+%This functions as the "loadModel" and "cnnTest" is used to test the LSTM
+%models trained by the "LSTM" function.
 function [sens_pred_1, spec_pred_1, sens_det_1, spec_det_1,sens_pred_2, spec_pred_2, sens_det_2, spec_det_2] = LSTMtest(patient,model)
     
        file = "../models/classifiers/"+model; 

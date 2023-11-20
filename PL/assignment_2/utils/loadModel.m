@@ -1,3 +1,6 @@
+%This function was used to determine how well every one of the shallow
+%network models trained are at predicting and/or detecting seizures. 
+
 function [sens_pred_1, spec_pred_1, sens_det_1, spec_det_1,sens_pred_2, spec_pred_2, sens_det_2, spec_det_2] = loadModel(patient,model)
     file = "../models/classifiers/"+model; 
     load(file,"net");
@@ -13,7 +16,7 @@ function [sens_pred_1, spec_pred_1, sens_det_1, spec_det_1,sens_pred_2, spec_pre
     T = correctTarget(Trg);
 
      % Divinding the dataset and target into treino + test
-    [data_treino,data_test,target_treino,target_test] = divideDataset(P,T ,0.85);
+    [~,data_test,~,target_test] = divideDataset(P,T ,0.85);
     
     % INVERTING P AND T
     data_test = data_test';

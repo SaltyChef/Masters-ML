@@ -1,3 +1,7 @@
+%This function divides the data set into two, the size of each part is
+%determined by the "value" argument. Notice that for this project the value
+%used to train and test every model was 85% train and 15% test.
+
 function [data_treino,data_test,target_treino,target_test] = divideDataset(P,T ,value)
     % Divinding the dataset and target into treino + test
     percentage = value;
