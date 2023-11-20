@@ -1,7 +1,8 @@
 %funçao que testa o modelo de CNN
-function resultado = cnnTest(patient)
+function [sens_pred_1, spec_pred_1, sens_det_1, spec_det_1,sens_pred_2, spec_pred_2, sens_det_2, spec_det_2] = cnnTest(patient,model)
     
-    load ../models/classifiers/CNN_44202_B1_PSize1_PStride1_NF20_FS10_NL2_LS1_E100.mat;
+    file = "../models/classifiers/"+model; 
+    load(file,"net");
     if(patient == 1)           
         load '../dataset/44202.mat' FeatVectSel Trg
     elseif(patient == 2)
@@ -25,7 +26,7 @@ function resultado = cnnTest(patient)
     target = grp2idx(target_4D_test)';
     result = grp2idx(result)';
     
-    [sens_pred_1, spec_pred_1, sens_det_1, spec_det_1] = confMatrix(result, target)
-    [sens_pred_2, spec_pred_2, sens_det_2, spec_det_2] = postProcessing(result, target)
+    [sens_pred_1, spec_pred_1, sens_det_1, spec_det_1] = confMatrix(result, target);
+    [sens_pred_2, spec_pred_2, sens_det_2, spec_det_2] = postProcessing(result, target);
     
 end
