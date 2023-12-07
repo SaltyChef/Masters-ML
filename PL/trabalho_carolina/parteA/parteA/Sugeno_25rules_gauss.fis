@@ -1,0 +1,69 @@
+[System]
+Name='Sugeno_25rules_gauss'
+Type='sugeno'
+Version=2.0
+NumInputs=2
+NumOutputs=1
+NumRules=25
+AndMethod='min'
+OrMethod='max'
+ImpMethod='prod'
+AggMethod='sum'
+DefuzzMethod='wtaver'
+
+[Input1]
+Name='erro'
+Range=[-1 1]
+NumMFs=5
+MF1='Big Negative':'gaussmf',[0.2123 -1]
+MF2='Negative':'gaussmf',[0.2123 -0.5]
+MF3='Zero':'gaussmf',[0.2123 0]
+MF4='Positive':'gaussmf',[0.2123 0.5]
+MF5='Big Positive':'gaussmf',[0.2123 1]
+
+[Input2]
+Name='derivada_erro'
+Range=[-1 1]
+NumMFs=5
+MF1='Big Negative':'gaussmf',[0.2123 -1]
+MF2='Negative':'gaussmf',[0.2123 -0.5]
+MF3='Zero':'gaussmf',[0.2123 0]
+MF4='Positive':'gaussmf',[0.2123 0.5]
+MF5='Big Positive':'gaussmf',[0.2123 1]
+
+[Output1]
+Name='output1'
+Range=[-1 1]
+NumMFs=5
+MF1='Negative Big':'constant',[-1]
+MF2='Negative':'constant',[-0.5]
+MF3='Zero':'constant',[0]
+MF4='Positve':'constant',[0.5]
+MF5='Positive Big':'constant',[1]
+
+[Rules]
+1 1, 1 (1) : 1
+2 1, 1 (1) : 1
+3 1, 1 (1) : 1
+4 1, 2 (1) : 1
+5 1, 3 (1) : 1
+1 2, 1 (1) : 1
+2 2, 1 (1) : 1
+3 2, 2 (1) : 1
+4 2, 3 (1) : 1
+5 2, 4 (1) : 1
+1 3, 1 (1) : 1
+2 3, 2 (1) : 1
+3 3, 3 (1) : 1
+4 3, 4 (1) : 1
+5 3, 5 (1) : 1
+1 4, 2 (1) : 1
+2 4, 3 (1) : 1
+3 4, 4 (1) : 1
+4 4, 5 (1) : 1
+5 4, 5 (1) : 1
+1 5, 3 (1) : 1
+2 5, 4 (1) : 1
+3 5, 5 (1) : 1
+4 5, 5 (1) : 1
+5 5, 5 (1) : 1

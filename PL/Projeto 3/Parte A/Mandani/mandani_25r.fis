@@ -1,0 +1,69 @@
+[System]
+Name='mandani_25r'
+Type='mamdani'
+Version=2.0
+NumInputs=2
+NumOutputs=1
+NumRules=25
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='error'
+Range=[-1 1]
+NumMFs=5
+MF1='negative_big':'trimf',[-1 -1 -0.5]
+MF2='negative_small':'trimf',[-1 -0.5 0]
+MF3='zero':'trimf',[-0.5 0 0.5]
+MF4='positive_small':'trimf',[0 0.5 1]
+MF5='positive_big':'trimf',[0.5 1 1]
+
+[Input2]
+Name='error_variation'
+Range=[-1 1]
+NumMFs=5
+MF1='negative_big':'trimf',[-1 -1 -0.5]
+MF2='negative_small':'trimf',[-1 -0.5 0]
+MF3='zero':'trimf',[-0.5 0 0.5]
+MF4='positive_small':'trimf',[0 0.5 1]
+MF5='positive_big':'trimf',[0.5 1 1]
+
+[Output1]
+Name='control_variation'
+Range=[-1 1]
+NumMFs=5
+MF1='negative_big':'trimf',[-1 -1 -0.5]
+MF2='negative_small':'trimf',[-1 -0.5 2.22e-16]
+MF3='zero':'trimf',[-0.5 2.22e-16 0.5]
+MF4='positive_small':'trimf',[2.22e-16 0.5 1]
+MF5='positive_big':'trimf',[0.5 1 1]
+
+[Rules]
+1 1, 1 (1) : 1
+1 2, 1 (1) : 1
+1 3, 1 (1) : 1
+1 4, 2 (1) : 1
+1 5, 3 (1) : 1
+2 1, 1 (1) : 1
+2 2, 1 (1) : 1
+2 3, 2 (1) : 1
+2 4, 3 (1) : 1
+2 5, 4 (1) : 1
+3 1, 1 (1) : 1
+3 2, 2 (1) : 1
+3 3, 3 (1) : 1
+3 4, 4 (1) : 1
+3 5, 5 (1) : 1
+4 1, 2 (1) : 1
+4 2, 3 (1) : 1
+4 3, 4 (1) : 1
+4 4, 5 (1) : 1
+4 5, 5 (1) : 1
+5 1, 3 (1) : 1
+5 2, 4 (1) : 1
+5 3, 5 (1) : 1
+5 4, 5 (1) : 1
+5 5, 5 (1) : 1
