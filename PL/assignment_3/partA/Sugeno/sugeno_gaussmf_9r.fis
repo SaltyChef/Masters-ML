@@ -1,5 +1,5 @@
 [System]
-Name='sugeno_9r_gaussmf_3fs'
+Name='sugeno_gaussmf_9r'
 Type='sugeno'
 Version=2.0
 NumInputs=2

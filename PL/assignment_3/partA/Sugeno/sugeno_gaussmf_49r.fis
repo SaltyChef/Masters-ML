@@ -1,5 +1,5 @@
 [System]
-Name='sugeno_49r_gauss_7fs'
+Name='sugeno_gaussmf_49r'
 Type='sugeno'
 Version=2.0
 NumInputs=2
@@ -12,7 +12,7 @@ AggMethod='sum'
 DefuzzMethod='wtaver'
 
 [Input1]
-Name='I1'
+Name='error'
 Range=[-1 1]
 NumMFs=7
 MF1='NB':'gaussmf',[0.1416 -1]
@@ -24,7 +24,7 @@ MF6='PM':'gaussmf',[0.1416 0.6667]
 MF7='PB':'gaussmf',[0.1416 1]
 
 [Input2]
-Name='I2'
+Name='error_variation'
 Range=[-1 1]
 NumMFs=7
 MF1='NB':'gaussmf',[0.1416 -1]
@@ -36,7 +36,7 @@ MF6='PM':'gaussmf',[0.1416 0.6667]
 MF7='PB':'gaussmf',[0.1416 1]
 
 [Output1]
-Name='O1'
+Name='control'
 Range=[-1 1]
 NumMFs=7
 MF1='NB':'constant',[-1]

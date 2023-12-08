@@ -12,7 +12,7 @@ AggMethod='sum'
 DefuzzMethod='wtaver'
 
 [Input1]
-Name='I1'
+Name='error'
 Range=[-1 1]
 NumMFs=3
 MF1='N':'trimf',[-1 -1 0]
@@ -20,7 +20,7 @@ MF2='ZE':'trimf',[-0.8333 0 0.8333]
 MF3='P':'trimf',[0 1 1.83]
 
 [Input2]
-Name='I2'
+Name='error_variation'
 Range=[-1 1]
 NumMFs=3
 MF1='N':'trimf',[-1 -1 0]
@@ -28,7 +28,7 @@ MF2='ZE':'trimf',[-1 0 1]
 MF3='P':'trimf',[0 1 1]
 
 [Output1]
-Name='O1'
+Name='control'
 Range=[-1 1]
 NumMFs=3
 MF1='N':'constant',[-1]

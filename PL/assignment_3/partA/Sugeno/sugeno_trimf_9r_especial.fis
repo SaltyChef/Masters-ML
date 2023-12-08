@@ -1,5 +1,5 @@
 [System]
-Name='sugeno_9rm_trimf_3fs'
+Name='sugeno_trimf_9r_especial'
 Type='sugeno'
 Version=2.0
 NumInputs=2
@@ -12,7 +12,7 @@ AggMethod='sum'
 DefuzzMethod='wtaver'
 
 [Input1]
-Name='I1'
+Name='error'
 Range=[-1 1]
 NumMFs=3
 MF1='N':'trimf',[-2 -1 0]
@@ -28,7 +28,7 @@ MF2='ZE':'trimf',[-1 0 1]
 MF3='P':'trimf',[0 1 2]
 
 [Output1]
-Name='O1'
+Name='control'
 Range=[-1 1]
 NumMFs=5
 MF1='PB':'constant',[-1]
