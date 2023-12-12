@@ -12,7 +12,7 @@ AggMethod='sum'
 DefuzzMethod='wtaver'
 
 [Input1]
-Name='I1'
+Name='error'
 Range=[-1 1]
 NumMFs=3
 MF1='N':'gaussmf',[0.4247 -1]
@@ -20,7 +20,7 @@ MF2='ZE':'gaussmf',[0.4247 0]
 MF3='P':'gaussmf',[0.4247 1]
 
 [Input2]
-Name='I2'
+Name='error_variation'
 Range=[-1 1]
 NumMFs=3
 MF1='N':'gaussmf',[0.4247 -1]
@@ -28,7 +28,7 @@ MF2='ZE':'gaussmf',[0.4247 0]
 MF3='P':'gaussmf',[0.4247 1]
 
 [Output1]
-Name='O1'
+Name='control'
 Range=[-1 1]
 NumMFs=3
 MF1='N':'constant',[-1]
