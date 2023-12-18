@@ -1,0 +1,2 @@
+chcp 65001
+cmd /D /c start "RapidAccelerator" /B "C:\Masters-ML\PL\slprj\raccel\simulator\simulator.exe" --config "C:\Users\afnii\AppData\Local\Temp\raccel_inputp6c9a3f1f_0b14_4cd7_9c88_92d2a919d43a.cfg" -server_info_file "C:\Users\afnii\AppData\Local\Temp\tpp6c9a3f1f_0b14_4cd7_9c88_92d2a919d43a.info" -tgtconn_server_info_file "C:\Users\afnii\AppData\Local\Temp\tgtconnp6c9a3f1f_0b14_4cd7_9c88_92d2a919d43a.info" -tgtconn_port 0 -port 0 -verbose off -w 1>"C:\Masters-ML\PL\slprj\raccel\simulator\cmdLog.txt"
