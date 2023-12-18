@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MF0 version="1.1" packageUris="http://schema.mathworks.com/mf0/slsa_mm_parameter_tuning/R2021b">
+  <slsa.mm.parametertuning.VariableRegistry type="slsa.mm.parametertuning.VariableRegistry" uuid="5a3e97aa-fd7e-4082-b6c3-519486e98066">
+    <blockParameters type="slsa.mm.parametertuning.BlockParameter" uuid="56c464e0-7388-41f6-98d6-1cb20d758d37">
+      <blockPath>simulator/Fuzzy Logic  Controller  with Ruleviewer/Fuzzy Logic Controller/Output Sample Points</blockPath>
+      <parameterName>Value</parameterName>
+      <expression type="slsa.mm.parametertuning.Expression" uuid="38d1be89-4518-4d1b-8d97-29d0c80271bc"/>
+      <valueAttributes type="slsa.mm.parametertuning.ValueAttributes" uuid="a9f20685-0237-4fe4-8ad7-7cdec90f74d9">
+        <className>double</className>
+        <dimensions>1</dimensions>
+        <dimensions>1</dimensions>
+      </valueAttributes>
+    </blockParameters>
+    <blockParameters type="slsa.mm.parametertuning.BlockParameter" uuid="286c0fb5-d66c-40e7-99a3-887c97e08575">
+      <blockPath>simulator/Fuzzy Logic  Controller  with Ruleviewer/Zero-Order Hold</blockPath>
+      <parameterName>SampleTime</parameterName>
+      <expression type="slsa.mm.parametertuning.Expression" uuid="7851b227-b97a-41a4-938c-f702a1d574c8"/>
+      <isTunable>false</isTunable>
+    </blockParameters>
+    <defaultValueCachePath>C:\Masters-ML\PL\slprj\raccel\simulator\simulator_default_variable_values.mat</defaultValueCachePath>
+    <expressions type="slsa.mm.parametertuning.Expression" uuid="59dedd6a-1f69-47fa-a197-4c9aadf2242f">
+      <expression>fuzzycmeans_backpropagation</expression>
+      <users type="slsa.mm.parametertuning.VariableDefinition" uuid="5cf02256-28f8-419c-a476-ff1196208bcb"/>
+      <variables type="slsa.mm.parametertuning.Variable" uuid="acdf3691-428c-4a79-8f12-2abe99ad4b32"/>
+    </expressions>
+    <expressions type="slsa.mm.parametertuning.Expression" uuid="e29ac8cb-7eb3-4b46-a87e-5cd6e7985340">
+      <expression>fismatrix</expression>
+      <users type="slsa.mm.parametertuning.VariableDefinition" uuid="f6d587df-f307-48e1-9458-29405ad2cec3"/>
+      <variables type="slsa.mm.parametertuning.Variable" uuid="f1ad7c1b-6e37-4804-bbf1-0adb7990fc21"/>
+    </expressions>
+    <expressions type="slsa.mm.parametertuning.Expression" uuid="836497da-9a52-4880-9a9d-2e780e61ba16">
+      <expression>2</expression>
+      <users type="slsa.mm.parametertuning.VariableDefinition" uuid="4705722f-233f-4566-b2a6-368bd2ac5cbe"/>
+      <users type="slsa.mm.parametertuning.VariableDefinition" uuid="6c287be3-9156-4504-859b-ce201813cf8f"/>
+    </expressions>
+    <expressions type="slsa.mm.parametertuning.Expression" uuid="230af8dd-f1a0-48b1-9876-b7ac0ef71d5a">
+      <expression>101</expression>
+      <users type="slsa.mm.parametertuning.VariableDefinition" uuid="a73daae0-9a63-4b45-9c12-c7b02dc4f237"/>
+    </expressions>
+    <expressions type="slsa.mm.parametertuning.Expression" uuid="0f0bd8e0-63e8-482c-8b1d-cb69fb13fa74">
+      <expression>0</expression>
+      <users type="slsa.mm.parametertuning.VariableDefinition" uuid="eb6ca4af-06b4-4909-8d7c-f2c8aeebe817"/>
+      <users type="slsa.mm.parametertuning.VariableDefinition" uuid="2df9e0d3-3c62-4af2-adbb-2fb572cf7cc8"/>
+      <users type="slsa.mm.parametertuning.VariableDefinition" uuid="02a44fdd-93a0-4804-83ca-ee9d01231ebb"/>
+      <users type="slsa.mm.parametertuning.VariableDefinition" uuid="c41f1751-f8c2-4a74-bb60-09eea11ac4f0"/>
+    </expressions>
+    <expressions type="slsa.mm.parametertuning.Expression" uuid="bdbd5c3a-62d1-44a9-b9b1-5c1ed09df11f">
+      <expression>diagnostics = fuzzy.internal.utility.createDiagnosticLevels(...
+    &apos;SimulinkDiagnostic&apos;,1, ...
+    &apos;Model&apos;,gcs, ...
+    &apos;Block&apos;,gcb, ...
+    &apos;OutOfRangeInputValue&apos;,get_param(gcb,&apos;OutOfRangeInputValueMessage&apos;), ...   
+    &apos;NoRuleFired&apos;,get_param(gcb,&apos;NoRuleFiredMessage&apos;), ...
+    &apos;EmptyOutputFuzzySet&apos;,get_param(gcb,&apos;EmptyOutputFuzzySetMessage&apos;) ...
+    );
+fis = fuzzy.internal.utility.validateInputsAndInitializeData(FIS,OutputSampleNumber,DataType);
+fm = fuzzy.internal.utility.createFiMathSpecifications(DataType);
+fuzzy.internal.utility.fuzblockmask(gcb,FuzzifiedInputs,RuleFiringStrengths,RuleOutputs,AggregatedOutputs);</expression>
+      <isAssignable>false</isAssignable>
+      <ownerBlockPath>simulator/Fuzzy Logic  Controller  with Ruleviewer/Fuzzy Logic Controller</ownerBlockPath>
+      <users type="slsa.mm.parametertuning.VariableDefinition" uuid="c78f844b-5256-4021-a47e-992a894ea477"/>
+      <variables type="slsa.mm.parametertuning.Variable" uuid="167320cc-a872-49f0-a5ed-e238dc91c584"/>
+      <variables type="slsa.mm.parametertuning.Variable" uuid="1c64770a-cf5b-4e9d-a83d-26e73c901068"/>
+      <variables type="slsa.mm.parametertuning.Variable" uuid="3a5e0535-5b9e-47bb-a7dc-2634eb1a1fbc"/>
+      <variables type="slsa.mm.parametertuning.Variable" uuid="12911fb6-6294-46c7-8109-cc6f80371b9e"/>
+      <variables type="slsa.mm.parametertuning.Variable" uuid="51444574-d651-44fb-8c99-abf67dede571"/>
+      <variables type="slsa.mm.parametertuning.Variable" uuid="c86ae184-a584-4635-80ca-da06f51a379e"/>
+      <variables type="slsa.mm.parametertuning.Variable" uuid="08586a14-ed8e-456f-89e9-7a6f55f10847"/>
+      <variables type="slsa.mm.parametertuning.Variable" uuid="6da664d7-561a-456c-96ee-5b1c41aef78f"/>
+      <variables type="slsa.mm.parametertuning.Variable" uuid="b596ceaa-cd1b-4462-aa1e-a28e5cdb386e"/>
+      <variables type="slsa.mm.parametertuning.Variable" uuid="d4584790-0572-41b2-9ed7-367f56a08b09"/>
+      <variables type="slsa.mm.parametertuning.Variable" uuid="a18cf52e-1bb7-4f3b-9c6b-9b5814210656"/>
+    </expressions>
+    <expressions type="slsa.mm.parametertuning.Expression" uuid="0505067d-e4c7-419c-85a7-8030a69d66e5">
+      <expression>1</expression>
+      <users type="slsa.mm.parametertuning.VariableDefinition" uuid="890dfe3d-72f4-4de1-a9c6-6ec13b132a18"/>
+    </expressions>
+    <expressions type="slsa.mm.parametertuning.Expression" uuid="7851b227-b97a-41a4-938c-f702a1d574c8">
+      <expression>Ts</expression>
+      <users type="slsa.mm.parametertuning.BlockParameter" uuid="286c0fb5-d66c-40e7-99a3-887c97e08575"/>
+      <variables type="slsa.mm.parametertuning.Variable" uuid="f46f01f4-96e1-4cda-a766-62650a906c30"/>
+    </expressions>
+    <expressions type="slsa.mm.parametertuning.Expression" uuid="38d1be89-4518-4d1b-8d97-29d0c80271bc">
+      <expression>fis.outputSamplePoints</expression>
+      <fieldReferences type="slsa.mm.parametertuning.FieldReference" uuid="77ecc1f9-c58d-45f2-9c01-460527accc20"/>
+      <users type="slsa.mm.parametertuning.BlockParameter" uuid="56c464e0-7388-41f6-98d6-1cb20d758d37"/>
+      <variables type="slsa.mm.parametertuning.Variable" uuid="a7114bf4-c10a-4f2d-938b-c05626726052"/>
+    </expressions>
+    <expressions type="slsa.mm.parametertuning.Expression" uuid="705e7e6b-7088-46fd-b8a8-075f1274af8a">
+      <expression>0.1</expression>
+      <users type="slsa.mm.parametertuning.VariableDefinition" uuid="8c54ac88-763f-4aa1-a801-0a78124b83b8"/>
+    </expressions>
+    <fieldReferences type="slsa.mm.parametertuning.FieldReference" uuid="77ecc1f9-c58d-45f2-9c01-460527accc20">
+      <expressions type="slsa.mm.parametertuning.Expression" uuid="38d1be89-4518-4d1b-8d97-29d0c80271bc"/>
+      <fieldName>fis.outputSamplePoints</fieldName>
+      <variable type="slsa.mm.parametertuning.Variable" uuid="a7114bf4-c10a-4f2d-938b-c05626726052"/>
+    </fieldReferences>
+    <name>simulator</name>
+    <variableDefinitions type="slsa.mm.parametertuning.VariableDefinition" uuid="c41f1751-f8c2-4a74-bb60-09eea11ac4f0">
+      <variable type="slsa.mm.parametertuning.Variable" uuid="1c64770a-cf5b-4e9d-a83d-26e73c901068"/>
+      <expression type="slsa.mm.parametertuning.Expression" uuid="0f0bd8e0-63e8-482c-8b1d-cb69fb13fa74"/>
+      <isTunable>false</isTunable>
+    </variableDefinitions>
+    <variableDefinitions type="slsa.mm.parametertuning.VariableDefinition" uuid="5cf02256-28f8-419c-a476-ff1196208bcb">
+      <variable type="slsa.mm.parametertuning.Variable" uuid="f1ad7c1b-6e37-4804-bbf1-0adb7990fc21"/>
+      <expression type="slsa.mm.parametertuning.Expression" uuid="59dedd6a-1f69-47fa-a197-4c9aadf2242f"/>
+      <isTunable>false</isTunable>
+    </variableDefinitions>
+    <variableDefinitions type="slsa.mm.parametertuning.VariableDefinition" uuid="f6d587df-f307-48e1-9458-29405ad2cec3">
+      <variable type="slsa.mm.parametertuning.Variable" uuid="a18cf52e-1bb7-4f3b-9c6b-9b5814210656"/>
+      <expression type="slsa.mm.parametertuning.Expression" uuid="e29ac8cb-7eb3-4b46-a87e-5cd6e7985340"/>
+      <isTunable>false</isTunable>
+    </variableDefinitions>
+    <variableDefinitions type="slsa.mm.parametertuning.VariableDefinition" uuid="a73daae0-9a63-4b45-9c12-c7b02dc4f237">
+      <variable type="slsa.mm.parametertuning.Variable" uuid="b596ceaa-cd1b-4462-aa1e-a28e5cdb386e"/>
+      <expression type="slsa.mm.parametertuning.Expression" uuid="230af8dd-f1a0-48b1-9876-b7ac0ef71d5a"/>
+      <isTunable>false</isTunable>
+    </variableDefinitions>
+    <variableDefinitions type="slsa.mm.parametertuning.VariableDefinition" uuid="eb6ca4af-06b4-4909-8d7c-f2c8aeebe817">
+      <variable type="slsa.mm.parametertuning.Variable" uuid="6da664d7-561a-456c-96ee-5b1c41aef78f"/>
+      <expression type="slsa.mm.parametertuning.Expression" uuid="0f0bd8e0-63e8-482c-8b1d-cb69fb13fa74"/>
+      <isTunable>false</isTunable>
+    </variableDefinitions>
+    <variableDefinitions type="slsa.mm.parametertuning.VariableDefinition" uuid="2df9e0d3-3c62-4af2-adbb-2fb572cf7cc8">
+      <variable type="slsa.mm.parametertuning.Variable" uuid="12911fb6-6294-46c7-8109-cc6f80371b9e"/>
+      <expression type="slsa.mm.parametertuning.Expression" uuid="0f0bd8e0-63e8-482c-8b1d-cb69fb13fa74"/>
+      <isTunable>false</isTunable>
+    </variableDefinitions>
+    <variableDefinitions type="slsa.mm.parametertuning.VariableDefinition" uuid="02a44fdd-93a0-4804-83ca-ee9d01231ebb">
+      <variable type="slsa.mm.parametertuning.Variable" uuid="167320cc-a872-49f0-a5ed-e238dc91c584"/>
+      <expression type="slsa.mm.parametertuning.Expression" uuid="0f0bd8e0-63e8-482c-8b1d-cb69fb13fa74"/>
+      <isTunable>false</isTunable>
+    </variableDefinitions>
+    <variableDefinitions type="slsa.mm.parametertuning.VariableDefinition" uuid="890dfe3d-72f4-4de1-a9c6-6ec13b132a18">
+      <variable type="slsa.mm.parametertuning.Variable" uuid="3a5e0535-5b9e-47bb-a7dc-2634eb1a1fbc"/>
+      <expression type="slsa.mm.parametertuning.Expression" uuid="0505067d-e4c7-419c-85a7-8030a69d66e5"/>
+      <isTunable>false</isTunable>
+    </variableDefinitions>
+    <variableDefinitions type="slsa.mm.parametertuning.VariableDefinition" uuid="c78f844b-5256-4021-a47e-992a894ea477">
+      <variable type="slsa.mm.parametertuning.Variable" uuid="a7114bf4-c10a-4f2d-938b-c05626726052"/>
+      <expression type="slsa.mm.parametertuning.Expression" uuid="bdbd5c3a-62d1-44a9-b9b1-5c1ed09df11f"/>
+    </variableDefinitions>
+    <variableDefinitions type="slsa.mm.parametertuning.VariableDefinition" uuid="4705722f-233f-4566-b2a6-368bd2ac5cbe">
+      <variable type="slsa.mm.parametertuning.Variable" uuid="d4584790-0572-41b2-9ed7-367f56a08b09"/>
+      <expression type="slsa.mm.parametertuning.Expression" uuid="836497da-9a52-4880-9a9d-2e780e61ba16"/>
+      <isTunable>false</isTunable>
+    </variableDefinitions>
+    <variableDefinitions type="slsa.mm.parametertuning.VariableDefinition" uuid="6c287be3-9156-4504-859b-ce201813cf8f">
+      <variable type="slsa.mm.parametertuning.Variable" uuid="51444574-d651-44fb-8c99-abf67dede571"/>
+      <expression type="slsa.mm.parametertuning.Expression" uuid="836497da-9a52-4880-9a9d-2e780e61ba16"/>
+      <isTunable>false</isTunable>
+    </variableDefinitions>
+    <variableDefinitions type="slsa.mm.parametertuning.VariableDefinition" uuid="8c54ac88-763f-4aa1-a801-0a78124b83b8">
+      <variable type="slsa.mm.parametertuning.Variable" uuid="f46f01f4-96e1-4cda-a766-62650a906c30"/>
+      <expression type="slsa.mm.parametertuning.Expression" uuid="705e7e6b-7088-46fd-b8a8-075f1274af8a"/>
+    </variableDefinitions>
+    <variables type="slsa.mm.parametertuning.Variable" uuid="acdf3691-428c-4a79-8f12-2abe99ad4b32">
+      <expressions type="slsa.mm.parametertuning.Expression" uuid="59dedd6a-1f69-47fa-a197-4c9aadf2242f"/>
+      <name>fuzzycmeans_backpropagation</name>
+      <workspace type="slsa.mm.parametertuning.Workspace" uuid="0c869a0c-a93f-404e-8ad1-689334f637d9"/>
+    </variables>
+    <variables type="slsa.mm.parametertuning.Variable" uuid="a18cf52e-1bb7-4f3b-9c6b-9b5814210656">
+      <definition type="slsa.mm.parametertuning.VariableDefinition" uuid="f6d587df-f307-48e1-9458-29405ad2cec3"/>
+      <expressions type="slsa.mm.parametertuning.Expression" uuid="bdbd5c3a-62d1-44a9-b9b1-5c1ed09df11f"/>
+      <name>FIS</name>
+      <workspace type="slsa.mm.parametertuning.Workspace" uuid="72f74efa-6b75-449c-9069-4af6a1342eb7"/>
+    </variables>
+    <variables type="slsa.mm.parametertuning.Variable" uuid="f1ad7c1b-6e37-4804-bbf1-0adb7990fc21">
+      <definition type="slsa.mm.parametertuning.VariableDefinition" uuid="5cf02256-28f8-419c-a476-ff1196208bcb"/>
+      <expressions type="slsa.mm.parametertuning.Expression" uuid="e29ac8cb-7eb3-4b46-a87e-5cd6e7985340"/>
+      <name>fismatrix</name>
+      <workspace type="slsa.mm.parametertuning.Workspace" uuid="0169b32f-73cd-472f-9119-f9edda29e08f"/>
+    </variables>
+    <variables type="slsa.mm.parametertuning.Variable" uuid="6da664d7-561a-456c-96ee-5b1c41aef78f">
+      <definition type="slsa.mm.parametertuning.VariableDefinition" uuid="eb6ca4af-06b4-4909-8d7c-f2c8aeebe817"/>
+      <expressions type="slsa.mm.parametertuning.Expression" uuid="bdbd5c3a-62d1-44a9-b9b1-5c1ed09df11f"/>
+      <name>FuzzifiedInputs</name>
+      <workspace type="slsa.mm.parametertuning.Workspace" uuid="72f74efa-6b75-449c-9069-4af6a1342eb7"/>
+    </variables>
+    <variables type="slsa.mm.parametertuning.Variable" uuid="b596ceaa-cd1b-4462-aa1e-a28e5cdb386e">
+      <definition type="slsa.mm.parametertuning.VariableDefinition" uuid="a73daae0-9a63-4b45-9c12-c7b02dc4f237"/>
+      <expressions type="slsa.mm.parametertuning.Expression" uuid="bdbd5c3a-62d1-44a9-b9b1-5c1ed09df11f"/>
+      <name>OutputSampleNumber</name>
+      <workspace type="slsa.mm.parametertuning.Workspace" uuid="72f74efa-6b75-449c-9069-4af6a1342eb7"/>
+    </variables>
+    <variables type="slsa.mm.parametertuning.Variable" uuid="c86ae184-a584-4635-80ca-da06f51a379e">
+      <expressions type="slsa.mm.parametertuning.Expression" uuid="bdbd5c3a-62d1-44a9-b9b1-5c1ed09df11f"/>
+      <name>OutOfRangeInputValueMessage</name>
+      <workspace type="slsa.mm.parametertuning.Workspace" uuid="72f74efa-6b75-449c-9069-4af6a1342eb7"/>
+    </variables>
+    <variables type="slsa.mm.parametertuning.Variable" uuid="08586a14-ed8e-456f-89e9-7a6f55f10847">
+      <expressions type="slsa.mm.parametertuning.Expression" uuid="bdbd5c3a-62d1-44a9-b9b1-5c1ed09df11f"/>
+      <name>DataType</name>
+      <workspace type="slsa.mm.parametertuning.Workspace" uuid="72f74efa-6b75-449c-9069-4af6a1342eb7"/>
+    </variables>
+    <variables type="slsa.mm.parametertuning.Variable" uuid="12911fb6-6294-46c7-8109-cc6f80371b9e">
+      <definition type="slsa.mm.parametertuning.VariableDefinition" uuid="2df9e0d3-3c62-4af2-adbb-2fb572cf7cc8"/>
+      <expressions type="slsa.mm.parametertuning.Expression" uuid="bdbd5c3a-62d1-44a9-b9b1-5c1ed09df11f"/>
+      <name>RuleFiringStrengths</name>
+      <workspace type="slsa.mm.parametertuning.Workspace" uuid="72f74efa-6b75-449c-9069-4af6a1342eb7"/>
+    </variables>
+    <variables type="slsa.mm.parametertuning.Variable" uuid="167320cc-a872-49f0-a5ed-e238dc91c584">
+      <definition type="slsa.mm.parametertuning.VariableDefinition" uuid="02a44fdd-93a0-4804-83ca-ee9d01231ebb"/>
+      <expressions type="slsa.mm.parametertuning.Expression" uuid="bdbd5c3a-62d1-44a9-b9b1-5c1ed09df11f"/>
+      <name>RuleOutputs</name>
+      <workspace type="slsa.mm.parametertuning.Workspace" uuid="72f74efa-6b75-449c-9069-4af6a1342eb7"/>
+    </variables>
+    <variables type="slsa.mm.parametertuning.Variable" uuid="1c64770a-cf5b-4e9d-a83d-26e73c901068">
+      <definition type="slsa.mm.parametertuning.VariableDefinition" uuid="c41f1751-f8c2-4a74-bb60-09eea11ac4f0"/>
+      <expressions type="slsa.mm.parametertuning.Expression" uuid="bdbd5c3a-62d1-44a9-b9b1-5c1ed09df11f"/>
+      <name>AggregatedOutputs</name>
+      <workspace type="slsa.mm.parametertuning.Workspace" uuid="72f74efa-6b75-449c-9069-4af6a1342eb7"/>
+    </variables>
+    <variables type="slsa.mm.parametertuning.Variable" uuid="3a5e0535-5b9e-47bb-a7dc-2634eb1a1fbc">
+      <definition type="slsa.mm.parametertuning.VariableDefinition" uuid="890dfe3d-72f4-4de1-a9c6-6ec13b132a18"/>
+      <expressions type="slsa.mm.parametertuning.Expression" uuid="bdbd5c3a-62d1-44a9-b9b1-5c1ed09df11f"/>
+      <name>SimulateUsing</name>
+      <workspace type="slsa.mm.parametertuning.Workspace" uuid="72f74efa-6b75-449c-9069-4af6a1342eb7"/>
+    </variables>
+    <variables type="slsa.mm.parametertuning.Variable" uuid="d4584790-0572-41b2-9ed7-367f56a08b09">
+      <definition type="slsa.mm.parametertuning.VariableDefinition" uuid="4705722f-233f-4566-b2a6-368bd2ac5cbe"/>
+      <expressions type="slsa.mm.parametertuning.Expression" uuid="bdbd5c3a-62d1-44a9-b9b1-5c1ed09df11f"/>
+      <name>NoRuleFiredMessage</name>
+      <workspace type="slsa.mm.parametertuning.Workspace" uuid="72f74efa-6b75-449c-9069-4af6a1342eb7"/>
+    </variables>
+    <variables type="slsa.mm.parametertuning.Variable" uuid="51444574-d651-44fb-8c99-abf67dede571">
+      <definition type="slsa.mm.parametertuning.VariableDefinition" uuid="6c287be3-9156-4504-859b-ce201813cf8f"/>
+      <expressions type="slsa.mm.parametertuning.Expression" uuid="bdbd5c3a-62d1-44a9-b9b1-5c1ed09df11f"/>
+      <name>EmptyOutputFuzzySetMessage</name>
+      <workspace type="slsa.mm.parametertuning.Workspace" uuid="72f74efa-6b75-449c-9069-4af6a1342eb7"/>
+    </variables>
+    <variables type="slsa.mm.parametertuning.Variable" uuid="a7114bf4-c10a-4f2d-938b-c05626726052">
+      <definition type="slsa.mm.parametertuning.VariableDefinition" uuid="c78f844b-5256-4021-a47e-992a894ea477"/>
+      <expressions type="slsa.mm.parametertuning.Expression" uuid="38d1be89-4518-4d1b-8d97-29d0c80271bc"/>
+      <fieldReferences type="slsa.mm.parametertuning.FieldReference" uuid="77ecc1f9-c58d-45f2-9c01-460527accc20"/>
+      <name>fis</name>
+      <workspace type="slsa.mm.parametertuning.Workspace" uuid="72f74efa-6b75-449c-9069-4af6a1342eb7"/>
+    </variables>
+    <variables type="slsa.mm.parametertuning.Variable" uuid="f46f01f4-96e1-4cda-a766-62650a906c30">
+      <definition type="slsa.mm.parametertuning.VariableDefinition" uuid="8c54ac88-763f-4aa1-a801-0a78124b83b8"/>
+      <expressions type="slsa.mm.parametertuning.Expression" uuid="7851b227-b97a-41a4-938c-f702a1d574c8"/>
+      <name>Ts</name>
+      <workspace type="slsa.mm.parametertuning.Workspace" uuid="0169b32f-73cd-472f-9119-f9edda29e08f"/>
+    </variables>
+    <workspaces type="slsa.mm.parametertuning.Workspace" uuid="0c869a0c-a93f-404e-8ad1-689334f637d9">
+      <name>global-workspace</name>
+      <variables type="slsa.mm.parametertuning.Variable" uuid="acdf3691-428c-4a79-8f12-2abe99ad4b32"/>
+    </workspaces>
+    <workspaces type="slsa.mm.parametertuning.Workspace" uuid="0169b32f-73cd-472f-9119-f9edda29e08f">
+      <name>simulator:11</name>
+      <type>MASK</type>
+      <variables type="slsa.mm.parametertuning.Variable" uuid="f1ad7c1b-6e37-4804-bbf1-0adb7990fc21"/>
+      <variables type="slsa.mm.parametertuning.Variable" uuid="f46f01f4-96e1-4cda-a766-62650a906c30"/>
+    </workspaces>
+    <workspaces type="slsa.mm.parametertuning.Workspace" uuid="72f74efa-6b75-449c-9069-4af6a1342eb7">
+      <name>simulator:11:5</name>
+      <type>MASK</type>
+      <variables type="slsa.mm.parametertuning.Variable" uuid="a18cf52e-1bb7-4f3b-9c6b-9b5814210656"/>
+      <variables type="slsa.mm.parametertuning.Variable" uuid="6da664d7-561a-456c-96ee-5b1c41aef78f"/>
+      <variables type="slsa.mm.parametertuning.Variable" uuid="b596ceaa-cd1b-4462-aa1e-a28e5cdb386e"/>
+      <variables type="slsa.mm.parametertuning.Variable" uuid="c86ae184-a584-4635-80ca-da06f51a379e"/>
+      <variables type="slsa.mm.parametertuning.Variable" uuid="08586a14-ed8e-456f-89e9-7a6f55f10847"/>
+      <variables type="slsa.mm.parametertuning.Variable" uuid="3a5e0535-5b9e-47bb-a7dc-2634eb1a1fbc"/>
+      <variables type="slsa.mm.parametertuning.Variable" uuid="12911fb6-6294-46c7-8109-cc6f80371b9e"/>
+      <variables type="slsa.mm.parametertuning.Variable" uuid="167320cc-a872-49f0-a5ed-e238dc91c584"/>
+      <variables type="slsa.mm.parametertuning.Variable" uuid="1c64770a-cf5b-4e9d-a83d-26e73c901068"/>
+      <variables type="slsa.mm.parametertuning.Variable" uuid="d4584790-0572-41b2-9ed7-367f56a08b09"/>
+      <variables type="slsa.mm.parametertuning.Variable" uuid="51444574-d651-44fb-8c99-abf67dede571"/>
+      <variables type="slsa.mm.parametertuning.Variable" uuid="a7114bf4-c10a-4f2d-938b-c05626726052"/>
+    </workspaces>
+  </slsa.mm.parametertuning.VariableRegistry>
+</MF0>
